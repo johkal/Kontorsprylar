@@ -21,7 +21,7 @@
                 <br />
 
                 <form>
-                    <div class="input-group input-group-sm" style="text-align: center">
+                    <div class="input-group" style="text-align: center">
                         <input type="text" class="form-control" placeholder="Vad behöver du till ditt kontor?">
                         <div class="input-group-btn">
                             <button class="btn btn-default" type="submit">
@@ -39,21 +39,9 @@
                 </p>
             </p>
         </div>
-    </form>
+
 
     <div id="leftMenu" class="leftMenu" runat="server">
-        <ul>
-            <li><a href="#">Kategori 1</a>
-        <ul>
-            <li><a href="#">Produkt 1.1</a>
-                <ul>
-                    <li><a href="#">Produkt 1.1.1</a></li>
-                    <li><a href="#">Produkt 1.1.2</a></li>
-                </ul>
-            </li>
-        </ul>
-            </li>
-        </ul>
     </div>
 
     <div id="mainContent">
