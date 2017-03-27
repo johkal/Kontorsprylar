@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SQLKAB;
 
 namespace Kontorsprylar
 {
@@ -11,7 +12,10 @@ namespace Kontorsprylar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            List<Category> categories = SQL.GenerateProductMenu();
+            string indexPageinnerHTML = SQL.GenerateIndexCarousel(categories);
+            indexPage.InnerHtml = indexPageinnerHTML;
+            
         }
     }
 }

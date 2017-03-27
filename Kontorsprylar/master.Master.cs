@@ -10,7 +10,7 @@ namespace Kontorsprylar
 {
     public partial class master : System.Web.UI.MasterPage
     {
-        string CON_STR = "Data Source=.;Initial Catalog=Dunder;Integrated Security=True";
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             List<Category> categories = SQL.GenerateProductMenu();

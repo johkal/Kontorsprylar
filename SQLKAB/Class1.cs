@@ -10,7 +10,7 @@ namespace SQLKAB
 {
     public class SQL
     {
-        static string CON_STR = "Data Source=.;Initial Catalog=Dunder;Integrated Security=True";
+        static string CON_STR = "Data Source=.;Initial Catalog = Dunder; Integrated Security = True";
 
         public static List<Category> GenerateProductMenu()
         {
@@ -40,6 +40,47 @@ namespace SQLKAB
                 persConnection.Close();
             }
             return kategorier;
+        }
+
+        public static string GenerateIndexCarousel(List<Category> categories)
+        {
+            string innerHTML = "<div id = 'myCarousel' class='carousel slide container' data-ride='carousel'><ol class='carousel-indicators'>";
+
+
+            string firstID = "";
+            string firstName = "";
+            foreach (var item in categories)
+            {
+                if (item.ParentID == "")
+                {
+                    innerHTML += $"<li data-target='#myCarousel' data-slide-to='0' class='active'></li>";
+                    firstID = item.ID;
+                    firstName = item.Name;
+                    break;
+                }
+            }
+            int i = 1;
+            foreach (var item in categories)
+            {
+                if (item.ParentID == "" && item.ID != firstID)
+                {
+                    innerHTML += $"<li data-target='#myCarousel' data-slide-to='{i}'</li>";
+                    i++;
+                }
+            }
+            innerHTML += $"</ol><div class='carousel-inner' role='listbox'><div class='item active'><img class='carousel - image' src='img/kontorsstol.jpg' alt='{firstName}'><div class='carousel-caption'><h3>{firstName}</h3></div></div>";
+
+            foreach (var item in categories)
+            {
+                if (item.ParentID == "" && item.ID != firstID)
+                {
+                    innerHTML += $"<div class='item'><img class='carousel-image' src='img/Kontorsbel.jpg' alt='{item.Name}'><div class='carousel-caption'><h3>{item.Name}</h3></div></div>";
+
+                }
+            }
+            innerHTML += "</div><a class='left carousel-control' href='#myCarousel' role='button' data-slide='prev'><span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span><span class='sr-only'>Previous</span></a><a class='right carousel-control' href='#myCarousel' role='button' data-slide='next'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span><span class='sr-only'>Next</span></a></div>";
+
+            return innerHTML;
         }
 
         public static string GenerateLeftMenu(List<Category> categories)
@@ -82,7 +123,6 @@ namespace SQLKAB
             return success;
         }
     }
-
 
     public class Category
     {

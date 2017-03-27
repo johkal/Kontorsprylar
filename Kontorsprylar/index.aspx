@@ -3,9 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-    <div>
-        <p>
-            <h1>Hej!</h1>
-        </p>
+    <div id='indexPage' class='indexPage' runat='server'>
+
+
+            
     </div>
 </asp:Content>
