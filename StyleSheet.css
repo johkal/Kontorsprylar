@@ -1,0 +1,29 @@
+﻿body
+{
+	background-color: #ffffff; /*Vit*/
+}
+
+p
+{
+    color: #000000; /*Svart*/
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 12px;
+}
+
+h1
+{
+    color: #273cb2; /*Blå*/
+    font-family: 'Segoe UI', sans-serif;
+}
+
+h2
+{
+    color: #6a81ff; /*Ljusblå*/
+    font-family: 'Segoe UI', sans-serif;
+}
+
+h3
+{
+    color: #ff8401; /*Orange*/
+    font-family: 'Segoe UI', sans-serif;
+}
