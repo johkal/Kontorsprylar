@@ -30,9 +30,9 @@ h3 {
 
 footer {
        position: fixed;
-       height: 100px;
        bottom: 0;
-       width: 100%,
+       width: 100%;
+       padding-bottom:1em;
 }
 
 .leftMenu {
