@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kontorsprylar", "Kontorsprylar\Kontorsprylar.csproj", "{E77DC54D-3925-4699-9D4C-965BC6162A8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLKAB", "SQLKAB\SQLKAB.csproj", "{129BC84B-9E95-4CDE-AB69-C7184BD8E177}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E77DC54D-3925-4699-9D4C-965BC6162A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E77DC54D-3925-4699-9D4C-965BC6162A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E77DC54D-3925-4699-9D4C-965BC6162A8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{129BC84B-9E95-4CDE-AB69-C7184BD8E177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{129BC84B-9E95-4CDE-AB69-C7184BD8E177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{129BC84B-9E95-4CDE-AB69-C7184BD8E177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{129BC84B-9E95-4CDE-AB69-C7184BD8E177}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

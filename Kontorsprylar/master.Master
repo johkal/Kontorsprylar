@@ -41,7 +41,7 @@
         </div>
     </form>
 
-    <div id="leftMenu" class="leftMenu">
+    <div id="leftMenu" class="leftMenu" runat="server">
         <ul>
             <li><a href="#">Kategori 1</a>
         <ul>
