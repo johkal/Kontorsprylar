@@ -24,8 +24,6 @@ namespace Kontorsprylar
             {
                 DropDownListVAT.Items.Add($"{ mom.Category} {mom.Rate}");
             }
-
-            ButtonSubmit.Text="Lägg till";
         }
 
         public void ButtonSubmit_Click(object sender, EventArgs e)
