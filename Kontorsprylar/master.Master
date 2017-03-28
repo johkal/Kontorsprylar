@@ -11,6 +11,7 @@
     <script src="Scripts/bootstrap.js"></script>
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="StyleSheet.css" rel="stylesheet" />
+    <script src="account.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
