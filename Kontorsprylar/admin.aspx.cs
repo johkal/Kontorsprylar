@@ -30,6 +30,8 @@ namespace Kontorsprylar
 
         public void ButtonSubmit_Click(object sender, EventArgs e)
         {
+            string[] momsText = DropDownListVAT.SelectedItem.Text.Split(' ');
+
             SQLKAB.Product produkt = new SQLKAB.Product("1", TextBoxProductName.Text, TextBoxProductNumber.Text, TextBoxNetPrice.Text, "", TextBoxProductDescription.Text, Convert.ToInt32(TextBoxNrInStock.Text), DropDownListVAT.Text, true);
 
             bool success = SQLKAB.SQL.CreateProduct(produkt);
