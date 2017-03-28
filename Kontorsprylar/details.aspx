@@ -14,15 +14,13 @@
         }
     </style>
     <script>
-        function PostThisShit()
+        function PostThis()
         {
             $.post(window.location.href, { antal: $("#main_Antal").val(), action: $("#action").val() })
-            .done(function () { alert("woohoo"); });
         }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
     <div class="detail" id="detail" runat="server">
     </div>
-<%--    <asp:Button ID="btnAddToCart" runat="server" Text="Button" OnClick="btnAddToCart_Click" />--%>
 </asp:Content>
