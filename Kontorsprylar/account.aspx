@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master.Master" AutoEventWireup="true" CodeBehind="account.aspx.cs" Inherits="Kontorsprylar.account" %>
+﻿<%@ Page Title="" Language="C#" EnableEventValidation="false" MasterPageFile="~/master.Master" AutoEventWireup="true" CodeBehind="account.aspx.cs" Inherits="Kontorsprylar.account" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -27,49 +27,49 @@
     <h2>Skapa konto</h2>
     <div class="col-xs-4">
         <label for="ex3">Förnamn</label>
-        <input class="form-control" type="text" placeholder="Obligatorisk">
+        <input class="form-control" id="fname" type="text" placeholder="Obligatorisk">
     </div>
-    <div class="col-xs-4" >
+    <div class="col-xs-4">
         <label for="ex3">Efternamn</label>
-        <input class="form-control" type="text" placeholder="Obligatorisk">
+        <input class="form-control" id="lname" type="text" placeholder="Obligatorisk">
     </div>
     <div class="col-xs-4">
         <label for="ex3">e-mail</label>
-        <input class="form-control" type="text" placeholder="Obligatorisk">
+        <input class="form-control" id="mail" type="text" placeholder="Obligatorisk">
     </div>
     <div class="col-xs-4">
         <label for="ex3">Password</label>
-        <input class="form-control" type="text" placeholder="Obligatorisk">
+        <input class="form-control" id="passw" type="text" placeholder="Obligatorisk">
     </div>
     <div class="col-xs-4">
         <label for="ex3">Telefon</label>
-        <input class="form-control" type="text">
+        <input class="form-control" id="phone" type="text">
     </div>
     <div class="col-xs-4">
         <label for="ex3">Adress</label>
-        <input class="form-control" type="text">
+        <input class="form-control" id="address" type="text">
     </div>
     <div class="col-xs-4">
         <label for="ex3">Våning</label>
-        <input class="form-control" type="text">
+        <input class="form-control" id="floor" type="text">
     </div>
     <div class="col-xs-4">
         <label for="ex3">Portkod</label>
-        <input class="form-control" type="text">
+        <input class="form-control" id="portcode" type="text">
     </div>
     <div class="col-xs-4">
         <label for="ex3">Postort</label>
-        <input class="form-control" type="text">
+        <input class="form-control" id="city" type="text">
     </div>
     <div class="col-xs-4">
         <label for="ex3">Postnummer</label>
-        <input class="form-control" type="text">
+        <input class="form-control" id="zip" type="text">
     </div>
     <div class="col-xs-4">
         <label for="ex3">Skapa konto</label>
         <br />
-        <button type="button" class="btnOK">Ok</button>
+        <button type="button" class="btnOK" id="addCust" onclick="addCust()">Ok</button>
     </div>
-    
+
 
 </asp:Content>

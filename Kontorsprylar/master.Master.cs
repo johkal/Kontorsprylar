@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 using SQLKAB;
 
 namespace Kontorsprylar
@@ -16,6 +17,15 @@ namespace Kontorsprylar
             List<Category> categories = SQL.GenerateProductMenu();
             string leftMenuInnerHtml = SQL.GenerateLeftMenu(categories);
             leftMenu.InnerHtml = leftMenuInnerHtml;
+            if (Session["IsLoggedIn"] != null)
+            {
+                if (Session["IsLoggedIn"].ToString() == "true")
+                {
+                    string myMessage = $"Du är inloggad.";
+                    ClientScriptManager cs = Page.ClientScript;
+                    cs.RegisterStartupScript(this.GetType(), "myalert", "alert('" + myMessage + "');", true);
+                }
+            }
         }
 
         protected void ButtonMySearch_Click(object sender, EventArgs e)
