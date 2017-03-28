@@ -394,6 +394,10 @@ namespace SQLKAB
                 SqlParameter mail = new SqlParameter("@Email", email);
                 myCommand.Parameters.Add(mail);
 
+                int nrOfCorrect = myCommand.ExecuteNonQuery();
+
+                if (nrOfCorrect == 0)
+                    loginOK = "Success";
 
             }
             catch (Exception)
