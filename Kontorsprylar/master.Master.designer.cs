@@ -31,6 +31,15 @@ namespace Kontorsprylar {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// tbSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText tbSearch;
+        
+        /// <summary>
         /// leftMenu control.
         /// </summary>
         /// <remarks>
