@@ -116,7 +116,6 @@ namespace SQLKAB
             return kategorier;
         }
 
-
         public static List<Product> GetProductsInCategory(int id)
         {
             List<Category> kategorier = GenerateProductMenu();
@@ -348,7 +347,7 @@ namespace SQLKAB
 
         public static string CheckLogin(string password, string email)
         {
-            string loginOK = "fail";
+            string loginOK = "Fail";
             SqlConnection myConnection = new SqlConnection(CON_STR);
             try
             {
