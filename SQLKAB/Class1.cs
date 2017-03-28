@@ -578,14 +578,14 @@ namespace SQLKAB
         }
     }
 
-    public class Basket
+    public class Cart
     {
-        public int ProductID { get; set; }
+        public Product Product { get; set; }
         public int NumberOfProducts { get; set; }
 
-        public Basket(int produktId, int numberOfProducts)
+        public Cart(Product product, int numberOfProducts)
         {
-            ProductID = produktId;
+            Product = product;
             NumberOfProducts = numberOfProducts;
         }
     }
