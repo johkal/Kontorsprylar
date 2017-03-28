@@ -198,7 +198,7 @@ namespace SQLKAB
 
                 SqlDataReader myReader = myCommand.ExecuteReader();
 
-                while(myReader.Read())
+                while (myReader.Read())
                 {
                     chosenProduct.ID = myReader["ID"].ToString();
                     chosenProduct.ItemInfo = myReader["ItemInfo"].ToString();
@@ -213,12 +213,17 @@ namespace SQLKAB
                         chosenProduct.IsActive = true;
                     else
                         chosenProduct.IsActive = false;
-                    
+
                     //var image = (byte[])myReader["Picture"];
                     //if(image != null)
                     //    chosenProduct.Picture = Convert.ToBase64String(image);
-
                 }
+                innerHTML += $@"<h1>{chosenProduct.Name}</h1><table class='nav-justified'><tr><td class='auto-style1'>";
+                innerHTML += $@"<img ID = 'detailsImg' src='data: image/jpeg;base64,{chosenProduct.Picture}' alt='{chosenProduct.Name}'/></td><td class='auto-style2'>&nbsp;</td>";
+                innerHTML += $@"<td class='auto-style3'><h2>{chosenProduct.NetPrice} kr exkl. moms</h2><br/><asp:TextBox ID = 'Antal' runat='server' Height='38px' Width='124px'></asp:TextBox>";
+                innerHTML += $@"<asp:Button class='button' ID='Add' runat='server' Height='38px' Text='Lägg i varukorg' Width='120px' />";
+                innerHTML += $@"<br/><p>Varor kvar i lager: {chosenProduct.NrInStock}</p></td></tr><tr><td class='auto-style1'>";
+                innerHTML += $@"<p>{chosenProduct.ItemInfo}</p></td><td class='auto-style2'>&nbsp;</td><td class='auto-style3'>&nbsp;</td></tr></table>";
             }
             catch (Exception)
             {

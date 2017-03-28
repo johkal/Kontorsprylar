@@ -22,13 +22,13 @@ namespace Kontorsprylar {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl detail;
         
         /// <summary>
-        /// TextBox1 control.
+        /// Antal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox Antal;
         
         /// <summary>
         /// Add control.
