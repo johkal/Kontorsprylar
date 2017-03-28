@@ -11,18 +11,27 @@
     <script src="Scripts/bootstrap.js"></script>
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="StyleSheet.css" rel="stylesheet" />
+    <style type="text/css">
+        .auto-style1 {
+            position: center;
+            display: table;
+            border-collapse: separate;
+            max-width: 300px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="jumbotron">
-
+           
                 <%--<img src="img/KAB-logo.png" />--%>
                 <h1 class="text-center">Kontorsprylar AB</h1>
                 <br />
                     <div class="input-group" style="text-align: center">
-                        <input type="text" class="form-control" placeholder="Vad behöver du till ditt kontor?">
+                        <input type="text" class="form-control" placeholder="Vad behöver du till ditt kontor?" id="tbSearch" runat="server">
                         <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit">
+                            <button class="btn btn-default" type="submit" runat="server" onclick="btnSearch_Click">
                                 <i class="glyphicon glyphicon-search"></i>
                             </button>
                         </div>
@@ -31,7 +40,7 @@
                 <button type="button" class="btn btn-link">
                 </button>
                 <p class="text-right">                   
-                    <a href="http://localhost:60227/account.aspx">Logga in / skapa konto</a>
+                    <a href="account.aspx">Logga in / skapa konto</a>
                 </p>
 
         </div>
