@@ -11,9 +11,12 @@ namespace Kontorsprylar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DropDownListCategory.Items.Add("Möbler");
-            DropDownListCategory.Items.Add("Belysning");
-            DropDownListCategory.Items.Add("Kattungar");
+            List<SQLKAB.Category> kategorier = SQLKAB.SQL.GetAllCategories();
+
+            foreach (var kategori in kategorier)
+            {
+                DropDownListCategory.Items.Add(kategori.Name);
+            }
 
             DropDownListVAT.Items.Add("Normal moms 25%");
             DropDownListVAT.Items.Add("Bokmoms 6%");

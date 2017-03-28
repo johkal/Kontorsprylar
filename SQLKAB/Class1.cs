@@ -83,6 +83,41 @@ namespace SQLKAB
             return produkter;
         }
 
+        public static List<Category> GetAllCategories()
+        {
+            List<Category> kategorier = new List<Category>();
+
+            SqlConnection persConnection = new SqlConnection(CON_STR);
+
+            try
+            {
+                persConnection.Open();
+
+                SqlCommand command = new SqlCommand("ReadAllCategories", persConnection);
+
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlDataReader dr = command.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    kategorier.Add(new Category(dr["ID"].ToString(), dr["Name"].ToString(), dr["ParentID"].ToString()));
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                persConnection.Close();
+            }
+
+            return kategorier;
+        }
+
+        public static List<VAT> 
+
         public static List<Product> GetProductsInCategory(int id)
         {
             List<Category> kategorier = GenerateProductMenu();
@@ -364,7 +399,7 @@ namespace SQLKAB
         }
     }
 
-    class ProductToCategory
+    public class ProductToCategory
     {
         public int ID { get; set; }
         public int PID { get; set; }
@@ -376,5 +411,10 @@ namespace SQLKAB
             PID = pid;
             CAID = caid;
         }
+    }
+
+    public class VAT
+    {
+        public string MyProperty { get; set; }
     }
 }
