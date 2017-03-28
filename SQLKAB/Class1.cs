@@ -433,7 +433,7 @@ namespace SQLKAB
 
                 command.Connection = persConnection;
 
-                command.CommandText = $"insert into Product (Name, ItemNumber, NetPrice, ItemInfo, NrInStock, VATID, IsActive) values ('{product.Name}', '{product.ItemNumber}', '{product.NetPrice}', '{ product.ItemInfo}', '{product.NrInStock}', '{product.VATID}', '{product.IsActive}')";
+                command.CommandText = $"insert into Products (Name, ItemNumber, NetPrice, ItemInfo, NrInStock, VATID, IsActive) values ('{product.Name}', '{product.ItemNumber}', '{product.NetPrice}', '{ product.ItemInfo}', '{product.NrInStock}', '{product.VATID}', '{product.IsActive}')";
 
                 int nrRows = command.ExecuteNonQuery();
 
@@ -446,6 +446,42 @@ namespace SQLKAB
             catch (Exception exception)
             {
                 
+            }
+            finally
+            {
+                persConnection.Close();
+            }
+
+            return success;
+        }
+
+        public static bool AddProductToCategory(int productID, int categoryID)
+        {
+            bool success = false;
+
+            SqlConnection persConnection = new SqlConnection(CON_STR);
+
+            try
+            {
+                persConnection.Open();
+
+                SqlCommand command = new SqlCommand();
+
+                command.Connection = persConnection;
+
+                command.CommandText = $"insert into ProductsToCategories (PID, CAID) values ('{productID}', '{categoryID}')";
+
+                int nrRows = command.ExecuteNonQuery();
+
+                if (nrRows > 0)
+                {
+                    success = true;
+                }
+
+            }
+            catch (Exception exception)
+            {
+
             }
             finally
             {
@@ -537,6 +573,18 @@ namespace SQLKAB
         public VAT()
         {
 
+        }
+    }
+
+    public class Basket
+    {
+        public int ProductID { get; set; }
+        public int NumberOfProducts { get; set; }
+
+        public Basket(int produktId, int numberOfProducts)
+        {
+            ProductID = produktId;
+            NumberOfProducts = numberOfProducts;
         }
     }
 }
