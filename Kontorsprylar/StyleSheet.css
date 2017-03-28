@@ -90,6 +90,9 @@ footer {
 }
 
 #TextBoxMyQuery{
-    width: 500px;
-    position: center;
+    width: 20em;
+}
+
+.auto-style1{
+    padding-left: 48%;
 }
