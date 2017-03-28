@@ -19,6 +19,6 @@
         <p>Beskrivning: <asp:TextBox ID="TextBoxProductDescription" runat="server" TextMode="MultiLine"></asp:TextBox></p>
         <p>Bild: <asp:FileUpload ID="FileUploadImage" runat="server" /></p>
         <asp:Button ID="ButtonSubmit" runat="server" Text="Button" OnClick="ButtonSubmit_Click" />
-        <p>Alla fält märkta med asterisk * måste fyllas i.</p>
+        <asp:Label ID="LabelSubmit" runat="server" Text="Alla fält märkta med asterisk * måste fyllas i."></asp:Label>
     </div>
 </asp:Content>

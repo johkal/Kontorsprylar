@@ -15,7 +15,7 @@ namespace SQLKAB
 
         public static Category FindCategory(string id)
         {
-            Category category = new Category("","","");
+            Category category = new Category("", "", "");
 
             SqlConnection persConnection = new SqlConnection(CON_STR);
 
@@ -116,6 +116,38 @@ namespace SQLKAB
             return kategorier;
         }
 
+        public static List<VAT> GetAllVAT()
+        {
+            List<VAT> moms = new List<VAT>();
+
+            SqlConnection persConnection = new SqlConnection(CON_STR);
+
+            try
+            {
+                persConnection.Open();
+
+                SqlCommand command = new SqlCommand("ReadAllVAT", persConnection);
+
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlDataReader dr = command.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    moms.Add(new VAT(dr["ID"].ToString(), dr["Category"].ToString(), Convert.ToDouble(dr["Rate"])));
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                persConnection.Close();
+            }
+
+            return moms;
+        }
 
         public static List<Product> GetProductsInCategory(int id)
         {
@@ -270,7 +302,7 @@ namespace SQLKAB
             }
 
             return innerHTML;
-        }   
+        }
 
         public static string GenerateIndexCarousel(List<Category> categories)
         {
@@ -346,6 +378,41 @@ namespace SQLKAB
             return leftMenuInnerText;
         }
 
+        public static bool CreateProduct(Product product)
+        {
+            bool success = false;
+
+            SqlConnection persConnection = new SqlConnection(CON_STR);
+
+            try
+            {
+                persConnection.Open();
+
+                SqlCommand command = new SqlCommand();
+                command.Connection = persConnection;
+
+                command.CommandText = $"insert into Product (Name, ItemNumber, NetPrice, Picture, ItemInfo, NrInStock, VATID, IsActive) values('{product.Name}', '{product.ItemNumber}', '{product.NetPrice}' '{product.Picture}', '{ product.ItemInfo}', '{product.NrInStock}', '{product.VATID}', '{product.IsActive}')";
+
+                int nrRows = command.ExecuteNonQuery();
+
+                if (nrRows > 0)
+                {
+                    success = true;
+                }
+
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            finally
+            {
+                persConnection.Close();
+            }
+
+            return success;
+        }
+
         public bool CreateOrder()
         {
             bool success = false;
@@ -415,6 +482,20 @@ namespace SQLKAB
 
     public class VAT
     {
-        public string MyProperty { get; set; }
+        public string ID { get; set; }
+        public string Category { get; set; }
+        public double Rate { get; set; }
+
+        public VAT(string id, string category, double rate)
+        {
+            ID = id;
+            Category = category;
+            Rate = rate;
+        }
+
+        public VAT()
+        {
+
+        }
     }
 }
