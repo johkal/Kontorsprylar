@@ -380,7 +380,7 @@ namespace SQLKAB
 
         public static string CheckLogin(string password, string email)
         {
-            string loginOK = "fail";
+            string loginOK = "Fail";
             SqlConnection myConnection = new SqlConnection(CON_STR);
             try
             {
@@ -531,6 +531,18 @@ namespace SQLKAB
         public VAT()
         {
 
+        }
+    }
+
+    public class Basket
+    {
+        public int ProductID { get; set; }
+        public int NumberOfProducts { get; set; }
+
+        public Basket(int produktId, int numberOfProducts)
+        {
+            ProductID = produktId;
+            NumberOfProducts = numberOfProducts;
         }
     }
 }
