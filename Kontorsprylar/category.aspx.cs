@@ -21,7 +21,7 @@ namespace Kontorsprylar
                 List<Product> produktlista = SQL.GetProductsInCategory(catID);
                 foreach (var prod in produktlista)
                 {
-                    categoriesDiv.InnerHtml += "<h2>" + prod.Name.ToString() + "</h2>\n";
+                    categoriesDiv.InnerHtml += "<h2><a href='details.aspx?PID=" + prod.ID + "'>" + prod.Name.ToString() + "</a></h2>\n";
                 }
                 
             }
