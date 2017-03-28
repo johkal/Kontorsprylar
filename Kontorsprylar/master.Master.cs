@@ -18,9 +18,5 @@ namespace Kontorsprylar
             leftMenu.InnerHtml = leftMenuInnerHtml;
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            tbSearch.Value = "Hej";
-        }
     }
 }
