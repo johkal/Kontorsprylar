@@ -291,7 +291,7 @@ namespace SQLKAB
                 innerHTML += $@"<input type='hidden' id='action' value='addProductToCart' style='height: 38px; width: 124px;' />";
 
                 innerHTML += $@"<br/><p>Varor kvar i lager: {chosenProduct.NrInStock}</p></td></tr><tr><td class='auto-style1'>";
-                innerHTML += $@"<input type='button' onClick='PostThisShit();' value='Lägg i varukorg' id='main_Add' class='button' style='height:38px;width:120px;' />";
+                innerHTML += $@"<input type='button' onClick='PostThis();' value='Lägg i varukorg' id='main_Add' class='button' style='height:38px;width:120px;' />";
                 innerHTML += $@"<p>{chosenProduct.ItemInfo}</p></td><td class='auto-style2'>&nbsp;</td><td class='auto-style3'>&nbsp;</td></tr></table>";
             }
             catch (Exception)

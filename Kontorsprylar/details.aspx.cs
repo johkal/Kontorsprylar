@@ -26,6 +26,14 @@ namespace Kontorsprylar
                 detail.InnerHtml = detailInnerHTML;
                 Session["PID"] = PID;//set
                 //int productID = (int)Session["PID"];//get
+
+                //Lägg in en lista i Session:
+                //    //(skapa listan varukorg)
+                //    //Session["varukorg"] = myVarukorg;
+
+                //    ////You should cast it back to the original type for use:
+                //    //var list = (List<int>)Session["varukorg"];
+                //    //// list.AddProduct(productID, productAmount);
             }
 
         }

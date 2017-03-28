@@ -14,10 +14,9 @@
         }
     </style>
     <script>
-        function PostThisShit()
+        function PostThis()
         {
             $.post(window.location.href, { antal: $("#main_Antal").val(), action: $("#action").val() })
-            .done(function () { alert("woohoo"); });
         }
     </script>
 </asp:Content>
