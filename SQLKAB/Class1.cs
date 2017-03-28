@@ -378,6 +378,37 @@ namespace SQLKAB
             return leftMenuInnerText;
         }
 
+        public static string CheckLogin(string password, string email)
+        {
+            string loginOK = "fail";
+            SqlConnection myConnection = new SqlConnection(CON_STR);
+            try
+            {
+                myConnection.Open();
+                SqlCommand myCommand = new SqlCommand("CheckLogin", myConnection);
+                myCommand.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter pwd = new SqlParameter("@SecretWord", password);
+                myCommand.Parameters.Add(pwd);
+
+                SqlParameter mail = new SqlParameter("@Email", email);
+                myCommand.Parameters.Add(mail);
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+
+            return loginOK;
+        }
+
         public static bool CreateProduct(Product product)
         {
             bool success = false;
