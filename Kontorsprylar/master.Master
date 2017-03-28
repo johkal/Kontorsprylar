@@ -11,6 +11,7 @@
     <script src="Scripts/bootstrap.js"></script>
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="StyleSheet.css" rel="stylesheet" />
+    <script src="account.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -20,6 +21,8 @@
             <h1 class="text-center">Kontorsprylar AB</h1>
             <br />
             <div class="input-group" style="text-align: center">
+                <asp:TextBox ID="TextBoxMyQuery" runat="server" Text="Vad behöver du till ditt kontor?"></asp:TextBox>
+                <asp:Button ID="ButtonMySearch" runat="server" Text="Sök" OnClick="ButtonMySearch_Click" />
                 <input type="text" class="form-control" placeholder="Vad behöver du till ditt kontor?">
                 <div class="input-group-btn">
                     <button class="btn btn-default" type="submit">

@@ -12,10 +12,12 @@ namespace Kontorsprylar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string loginOK = SQL.CheckLogin();
-            
+            string pwd = Request["pwd"];
+            string mail = Request["email"];
+            string loginOK = SQL.CheckLogin(pwd, mail);
 
-            info.Text = "wooohooo";
+            info.Text = loginOK;
+
         }
     }
 }

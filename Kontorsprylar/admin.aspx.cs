@@ -55,8 +55,34 @@ namespace Kontorsprylar
             }
             else
             {
-                LabelSubmit.Text = TextBoxProductDescription.Text.ToString();
+                LabelSubmit.Text = "Ett fel inträffade";
             }
+
+            int katID = 1;
+
+            List<Category> kategorier = SQL.GetAllCategories();
+
+            foreach (var kat in kategorier)
+            {
+                if (kat.Name == DropDownListCategory.Text)
+                {
+                    katID = Convert.ToInt32(kat.ID);
+                }
+            }
+
+            int prodID = 1;
+
+            List<Product> produkter = SQL.GetAllProducts();
+
+            foreach (var prod in produkter)
+            {
+                if (prod.Name == TextBoxProductName.Text)
+                {
+                    prodID = Convert.ToInt32(prod.ID);
+                }
+            }
+
+            SQL.AddProductToCategory(prodID, katID);
         }
     }
 }

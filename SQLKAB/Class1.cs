@@ -396,9 +396,15 @@ namespace SQLKAB
                 SqlParameter mail = new SqlParameter("@Email", email);
                 myCommand.Parameters.Add(mail);
 
-                int nrOfCorrect = myCommand.ExecuteNonQuery();
+                SqlDataReader myReader = myCommand.ExecuteReader();
 
-                if (nrOfCorrect == 0)
+                int test = 0;
+                while(myReader.Read())
+                {
+                    test = Convert.ToInt32(myReader["ID"]);
+                }
+
+                if (test > 0)
                     loginOK = "Success";
 
             }
@@ -429,7 +435,7 @@ namespace SQLKAB
 
                 command.Connection = persConnection;
 
-                command.CommandText = $"insert into Product (Name, ItemNumber, NetPrice, ItemInfo, NrInStock, VATID, IsActive) values ('{product.Name}', '{product.ItemNumber}', '{product.NetPrice}', '{ product.ItemInfo}', '{product.NrInStock}', '{product.VATID}', '{product.IsActive}')";
+                command.CommandText = $"insert into Products (Name, ItemNumber, NetPrice, ItemInfo, NrInStock, VATID, IsActive) values ('{product.Name}', '{product.ItemNumber}', '{product.NetPrice}', '{ product.ItemInfo}', '{product.NrInStock}', '{product.VATID}', '{product.IsActive}')";
 
                 int nrRows = command.ExecuteNonQuery();
 
@@ -442,6 +448,42 @@ namespace SQLKAB
             catch (Exception exception)
             {
                 
+            }
+            finally
+            {
+                persConnection.Close();
+            }
+
+            return success;
+        }
+
+        public static bool AddProductToCategory(int productID, int categoryID)
+        {
+            bool success = false;
+
+            SqlConnection persConnection = new SqlConnection(CON_STR);
+
+            try
+            {
+                persConnection.Open();
+
+                SqlCommand command = new SqlCommand();
+
+                command.Connection = persConnection;
+
+                command.CommandText = $"insert into ProductsToCategories (PID, CAID) values ('{productID}', '{categoryID}')";
+
+                int nrRows = command.ExecuteNonQuery();
+
+                if (nrRows > 0)
+                {
+                    success = true;
+                }
+
+            }
+            catch (Exception exception)
+            {
+
             }
             finally
             {
