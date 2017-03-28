@@ -25,14 +25,14 @@
                 </td>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3"><h2>Pris</h2>
-                    <asp:TextBox ID="TextBox1" runat="server" Height="38px" Width="124px"></asp:TextBox>
+                    <asp:TextBox ID="Antal" runat="server" Height="38px" Width="124px"></asp:TextBox>
                     <asp:Button class="button" ID="Add" runat="server" Height="38px" Text="Lägg i varukorg" Width="120px" />
                     <br />
-                    Varor kvar i lager</td>
+                    <p>Varor kvar i lager</p></td>
             </tr>
             <tr>
                 <td class="auto-style1">
-                    Produktbeskrivning</td>
+                   <p>Produktbeskrivning</p></td>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">&nbsp;</td>
             </tr>
