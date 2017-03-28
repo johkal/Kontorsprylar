@@ -12,13 +12,11 @@ namespace Kontorsprylar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (Request.Form["action"] != null && Request.Form["action"].Equals("addProductToCart"))
             {
                 //TODO add to cart
                 string antal = Request.Form["antal"];
-
-
+                Session["antalProds"] = antal;//set
             }
 
             if (Request["PID"] != null && Request["PID"].Length > 0)
@@ -26,25 +24,11 @@ namespace Kontorsprylar
                 string PID = Request["PID"];
                 string detailInnerHTML = SQL.GenerateDetailsInnerHTML(PID);
                 detail.InnerHtml = detailInnerHTML;
+                Session["PID"] = PID;//set
+                //int productID = (int)Session["PID"];//get
             }
 
-
         }
-
-        protected void btnAddToCart_Click(object sender, EventArgs e)
-        {
-            //btnAddToCart.Text = "Hej";
-            //Session["productID"] = Request.QueryString["PID"];//Set
-            //int productID = (int)Session["productID"];//Get
-            //Session["productAmount"] = Convert.ToInt32(main_Antal.Value);//Set
-            //int productAmount = (int)Session["productAmount"];//Get 
-
-
-            //    //Session["varukorg"] = myList;
-
-            //    ////You should cast it back to the original type for use:
-            //    //var list = (List<int>)Session["varukorg"];
-            //    //// list.Add(something);
-        }
+        
     }
 }

@@ -24,5 +24,4 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
     <div class="detail" id="detail" runat="server">
     </div>
-<%--    <asp:Button ID="btnAddToCart" runat="server" Text="Button" OnClick="btnAddToCart_Click" />--%>
 </asp:Content>
