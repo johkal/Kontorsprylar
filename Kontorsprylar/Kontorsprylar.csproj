@@ -104,6 +104,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="searchResult.aspx" />
     <Content Include="test.aspx" />
     <Content Include="details.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -179,6 +180,13 @@
     </Compile>
     <Compile Include="CheckLoggIn.aspx.designer.cs">
       <DependentUpon>CheckLoggIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="searchResult.aspx.cs">
+      <DependentUpon>searchResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="searchResult.aspx.designer.cs">
+      <DependentUpon>searchResult.aspx</DependentUpon>
     </Compile>
     <Compile Include="test.aspx.designer.cs">
       <DependentUpon>test.aspx</DependentUpon>
