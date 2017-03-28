@@ -17,6 +17,13 @@ namespace Kontorsprylar
 
             DropDownListVAT.Items.Add("Normal moms 25%");
             DropDownListVAT.Items.Add("Bokmoms 6%");
+
+            ButtonSubmit.Text="Lägg till";
+        }
+
+        protected void ButtonSubmit_Click(object sender, EventArgs e)
+        {
+            //SQLKAB.SQL.CreateProduct();
         }
     }
 }
