@@ -15,7 +15,6 @@ function loggin() {
 };
 
 function addCust() {
-    alert("test");
     var fname = document.getElementById("fname").value;
     var lname = document.getElementById("lname").value;
     var mail = document.getElementById("mail").value;
@@ -27,8 +26,11 @@ function addCust() {
     var city = document.getElementById("city").value;
     var zip = document.getElementById("zip").value;
 
-
-    $.get('AddCustomer.aspx?fname=' + fname + '&lname=' + lname + '&mail=' + mail + '&passw=' + passw + '&phone=' + phone + '&address=' + address + '&floor=' + floor + '&portcode=' + portcode + '&city=' + city + '&zip=' + zip);
-
-
-}
+    $.get('AddCustomer.aspx?fname=' + fname + '&lname=' + lname + '&mail=' + mail + '&passw=' + passw + '&phone=' + phone + '&address=' + address + '&floor=' + floor + '&portcode=' + portcode + '&city=' + city + '&zip=' + zip)
+    .done(function (data) {
+        alert(data + 'Jippi!');
+    })
+    .fail(function () {
+        alert("Något gick superfel.. Försök igen!");
+    });
+};

@@ -68,7 +68,7 @@
     <div class="col-xs-4">
         <label for="ex3">Skapa konto</label>
         <br />
-        <button type="button" class="btnOK" id="addCust" onclick="addCust()">Ok</button>
+        <button id="save" type="submit" class="btn-loggin" onclick="addCust()">Ok</button>
     </div>
 
 
