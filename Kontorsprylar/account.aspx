@@ -20,26 +20,26 @@
                     <label>
                         <input type="checkbox">Kom ihåg mig</label>
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button id="login" type="submit" class="btn-loggin" onclick="loggin()">Log In</button>
             </form>
         </div>
     </nav>
     <h2>Skapa konto</h2>
     <div class="col-xs-4">
         <label for="ex3">Förnamn</label>
-        <input class="form-control" type="text">
+        <input class="form-control" type="text" placeholder="Obligatorisk">
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-4" >
         <label for="ex3">Efternamn</label>
-        <input class="form-control" type="text">
+        <input class="form-control" type="text" placeholder="Obligatorisk">
     </div>
     <div class="col-xs-4">
         <label for="ex3">e-mail</label>
-        <input class="form-control" type="text">
+        <input class="form-control" type="text" placeholder="Obligatorisk">
     </div>
     <div class="col-xs-4">
         <label for="ex3">Password</label>
-        <input class="form-control" type="text">
+        <input class="form-control" type="text" placeholder="Obligatorisk">
     </div>
     <div class="col-xs-4">
         <label for="ex3">Telefon</label>
@@ -65,5 +65,11 @@
         <label for="ex3">Postnummer</label>
         <input class="form-control" type="text">
     </div>
+    <div class="col-xs-4">
+        <label for="ex3">Skapa konto</label>
+        <br />
+        <button type="button" class="btnOK">Ok</button>
+    </div>
+    
 
 </asp:Content>

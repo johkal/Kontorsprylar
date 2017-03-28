@@ -94,9 +94,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="account.js" />
     <Content Include="admin.aspx" />
     <Content Include="account.aspx" />
     <Content Include="category.aspx" />
+    <Content Include="CheckLoggIn.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -162,6 +164,13 @@
     </Compile>
     <Compile Include="category.aspx.designer.cs">
       <DependentUpon>category.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckLoggIn.aspx.cs">
+      <DependentUpon>CheckLoggIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckLoggIn.aspx.designer.cs">
+      <DependentUpon>CheckLoggIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="Content\test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>
