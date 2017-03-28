@@ -34,6 +34,7 @@ namespace Kontorsprylar
                 //    ////You should cast it back to the original type for use:
                 //    //var list = (List<int>)Session["varukorg"];
                 //    //// list.AddProduct(productID, productAmount);
+
             }
 
         }
