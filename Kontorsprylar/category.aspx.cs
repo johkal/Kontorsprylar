@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.Sql;
+using SQLKAB;
 
 namespace Kontorsprylar
 {
@@ -11,6 +13,26 @@ namespace Kontorsprylar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                int catID = Convert.ToInt32(Request.QueryString["Id"]);
+                categoryID.InnerHtml = "<h1>" + SQL.FindCategory(catID.ToString()).Name + "</h1>\n";
+
+                List<Product> produktlista = SQL.GetProductsInCategory(catID);
+                if (produktlista.Count < 1)
+                { categoriesDiv.InnerHtml += "<h2>Finns inga produkter i vald kategori</h2>\n"; }
+                else
+                {
+                    foreach (var prod in produktlista)
+                    {
+                        categoriesDiv.InnerHtml += "<h2><a href='details.aspx?PID=" + prod.ID + "'>" + prod.Name.ToString() + "</a></h2>\n";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
         }
     }
