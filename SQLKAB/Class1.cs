@@ -116,6 +116,38 @@ namespace SQLKAB
             return kategorier;
         }
 
+        public static List<VAT> GetAllVAT()
+        {
+            List<VAT> vat = new List<VAT>();
+
+            SqlConnection persConnection = new SqlConnection(CON_STR);
+
+            try
+            {
+                persConnection.Open();
+
+                SqlCommand command = new SqlCommand("ReadAllVAT", persConnection);
+
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlDataReader dr = command.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    vat.Add(new VAT(dr["ID"].ToString(), dr["Category"].ToString(), Convert.ToDouble(dr["Rate"])));
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                persConnection.Close();
+            }
+
+            return vat;
+        }
 
         public static List<Product> GetProductsInCategory(int id)
         {

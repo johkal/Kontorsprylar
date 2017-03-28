@@ -22,7 +22,7 @@ namespace Kontorsprylar
             btnAddToCart.Text = "Hej";
             Session["productID"] = Request.QueryString["PID"];//Set
             int productID = (int)Session["productID"];//Get
-            Session["productAmount"] = Convert.ToInt32(main_Antal.Value);//Set
+            //Session["productAmount"] = Convert.ToInt32(main_Antal.Value);//Set
             int productAmount = (int)Session["productAmount"];//Get 
         }
     }
