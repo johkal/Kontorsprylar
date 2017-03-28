@@ -17,13 +17,19 @@ namespace Kontorsprylar
             detail.InnerHtml = detailInnerHTML;
         }
 
-        protected void btnAddToCart_Click(object sender, EventArgs e)
-        {
-            btnAddToCart.Text = "Hej";
-            Session["productID"] = Request.QueryString["PID"];//Set
-            int productID = (int)Session["productID"];//Get
-            Session["productAmount"] = Convert.ToInt32(main_Antal.Value);//Set
-            int productAmount = (int)Session["productAmount"];//Get 
-        }
+        //protected void btnAddToCart_Click(object sender, EventArgs e)
+        //{
+        //    btnAddToCart.Text = "Hej";
+        //    Session["productID"] = Request.QueryString["PID"];//Set
+        //    int productID = (int)Session["productID"];//Get
+        //    Session["productAmount"] = Convert.ToInt32(main_Antal.Value);//Set
+        //    int productAmount = (int)Session["productAmount"];//Get 
+
+        //    //Session["test"] = myList;
+
+        //    ////You should cast it back to the original type for use:
+        //    //var list = (List<int>)Session["test"];
+        //    //// list.Add(something);
+        //}
     }
 }
