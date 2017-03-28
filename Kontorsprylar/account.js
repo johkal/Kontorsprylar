@@ -4,25 +4,33 @@
 
 function loggin() {
     var email = $('#email').val();
-    var pwd = $('#pwd').val();
-    //alert("Loggin metod anropad!");
-
-    //$.get('CheckLogIn.aspx?email=' + email + '&pwd=' + pwd)
-    //.done(function (data) {
-    //    alert(data)
-    //});
-
-    //$.getJSON('http://localhost:60227/CheckLogIn.aspx?email=kalle').done(function (data) { alert("hej") });
-
-    $.post("CheckLoggIn.aspx",
-        { name: "Donald Duck", city: "Duckburg" },
-        function (data, status) {
-            alert("Data: " + data + "\nStatus: " + status);
-        });
-
-}
+    var password = $('#pwd').val();
+    $.get('CheckLoggIn.aspx?email=' + email + '&pwd=' + password)
+    .done(function (data) {
+        alert(data + 'JIPPI!');
+    })
+    .fail(function () {
+        alert(email);
+    });
+};
 
 
+//    .done(function (data) {
+//        $("#LabelWhatever").text(data);
+//    })
+//    .fail(function () {
+//        alert("Fail!")
+//    });
+//});
 
+//function loggin() {
+//    alert("HEJ");
+//    var email = $('#email').val();
+//    var pwd = $('#pwd').val();
 
-
+//    $.post("CheckLoggIn.aspx",
+//    { name: "Donald Duck", city: "Duckburg" },
+//    function (data, status) {
+//        alert("Data: " + data + "\nStatus: " + status);
+//    });
+//}
