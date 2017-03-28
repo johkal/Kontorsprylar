@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 
 namespace SQLKAB
@@ -11,6 +12,143 @@ namespace SQLKAB
     public class SQL
     {
         static string CON_STR = "Data Source=.;Initial Catalog = Dunder; Integrated Security = True";
+
+        public static Category FindCategory(string id)
+        {
+            Category category = new Category("","","");
+
+            SqlConnection persConnection = new SqlConnection(CON_STR);
+
+            try
+            {
+                persConnection.Open();
+
+                SqlCommand command = new SqlCommand("ReadCategory", persConnection);
+
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add(new SqlParameter("@ID", id));
+
+                SqlDataReader dr = command.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    category.ID = dr["ID"].ToString();
+                    category.Name = dr["Name"].ToString();
+                    category.ParentID = dr["ParentID"].ToString();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                persConnection.Close();
+            }
+
+            return category;
+        }
+
+        public static List<Product> GetAllProducts()
+        {
+            List<Product> produkter = new List<Product>();
+
+            SqlConnection persConnection = new SqlConnection(CON_STR);
+
+            try
+            {
+                persConnection.Open();
+
+                SqlCommand command = new SqlCommand("ReadAllProduct", persConnection);
+
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlDataReader dr = command.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    produkter.Add(new Product(dr["ID"].ToString(), dr["Name"].ToString(), dr["ItemNumber"].ToString(), dr["NetPrice"].ToString(), dr["Picture"].ToString(), dr["ItemInfo"].ToString(), Convert.ToInt32(dr["NrInStock"]), dr["VATID"].ToString(), Convert.ToBoolean(dr["IsActive"])));
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                persConnection.Close();
+            }
+
+            return produkter;
+        }
+
+        public static List<Product> GetProductsInCategory(int id)
+        {
+            List<Category> kategorier = GenerateProductMenu();
+
+            List<Product> produkter = GetAllProducts();
+
+            List<Product> prodHits = new List<Product>();
+
+            List<ProductToCategory> PTC = new List<ProductToCategory>();
+
+            List<int> pid = new List<int>();
+
+            int newId = id;
+
+            SqlConnection persConnection = new SqlConnection(CON_STR);
+
+            try
+            {
+                persConnection.Open();
+
+                SqlCommand command = new SqlCommand("select * from ProductsToCategories", persConnection);
+
+                SqlDataReader dr = command.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    PTC.Add(new ProductToCategory(Convert.ToInt32(dr["ID"]), Convert.ToInt32(dr["PID"]), Convert.ToInt32(dr["CAID"])));
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                persConnection.Close();
+            }
+
+            foreach (var kategori in kategorier)
+            {
+                if (kategori.ID == newId.ToString() || kategori.ParentID == newId.ToString() || FindCategory(kategori.ParentID).ParentID == newId.ToString())
+                {
+                    foreach (var entry in PTC)
+                    {
+                        if (entry.CAID == Convert.ToInt32(kategori.ID))
+                        {
+                            pid.Add(entry.PID);
+                        }
+
+                    }
+                }
+            }
+
+            foreach (var produkt in produkter)
+            {
+                foreach (var nr in pid)
+                {
+                    if (nr == Convert.ToInt32(produkt.ID))
+                    {
+                        prodHits.Add(produkt);
+                    }
+                }
+            }
+
+            return prodHits;
+        }
 
         public static List<Category> GenerateProductMenu()
         {
@@ -40,6 +178,36 @@ namespace SQLKAB
                 persConnection.Close();
             }
             return kategorier;
+        }
+
+        public static string GenerateDetailsInnerHTML(string PID)
+        {
+            string innerHTML = "";
+
+            Product chosenProduct = new Product();
+
+            SqlConnection myConnection = new SqlConnection(CON_STR);
+            SqlCommand myCommand = new SqlCommand("ReadProductsOnID", myConnection);
+
+
+
+
+            return innerHTML;
+
+            //              <h1> Namn på produkt</h1>
+
+            //     <table class="nav-justified">
+            //    <tr>
+            //        <td class="auto-style1">
+            //            <img src = "img/KAB-logo.png" alt="Bild på produkten" style="width:50%; height:50%"/>
+            //            </td>
+            //        <td class="auto-style2">&nbsp;</td>
+            //        <td class="auto-style3">Produktbeskrivning<br />
+            //            <asp:TextBox ID = "TextBox1" runat="server" Height="38px" Width="124px"></asp:TextBox>
+            //            <asp:Button class="button" ID="Add" runat="server" Height="38px" Text="Lägg i varukorg" Width="120px" />
+            //        </td>
+            //    </tr>
+            //</table>
         }
 
         public static string GenerateIndexCarousel(List<Category> categories)
@@ -89,7 +257,7 @@ namespace SQLKAB
 
             foreach (var category in categories)
             {
-                if(category.ParentID == "")
+                if (category.ParentID == "")
                 {
                     leftMenuInnerText += $@"<li><a href='category.aspx?ID={category.ID}'>{category.Name}</a></li>";
 
@@ -135,6 +303,51 @@ namespace SQLKAB
             ID = id;
             Name = name;
             ParentID = parentID;
+        }
+    }
+
+    public class Product
+    {
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public string ItemNumber { get; set; }
+        public string NetPrice { get; set; }
+        public string Picture { get; set; }
+        public string ItemInfo { get; set; }
+        public int NrInStock { get; set; }
+        public string VATID { get; set; }
+        public bool IsActive { get; set; }
+
+        public Product()
+        {
+
+        }
+
+        public Product(string id, string name, string itemNumber, string netPrice, string picture, string intemInfo, int nrInStock, string vatId, bool isActive)
+        {
+            ID = id;
+            Name = name;
+            ItemNumber = itemNumber;
+            NetPrice = netPrice;
+            Picture = picture;
+            ItemInfo = ItemInfo;
+            NrInStock = nrInStock;
+            VATID = vatId;
+            IsActive = isActive;
+        }
+    }
+
+    class ProductToCategory
+    {
+        public int ID { get; set; }
+        public int PID { get; set; }
+        public int CAID { get; set; }
+
+        public ProductToCategory(int id, int pid, int caid)
+        {
+            ID = id;
+            PID = pid;
+            CAID = caid;
         }
     }
 }

@@ -13,21 +13,6 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-    <div class="hej" id="hej" runat="server">
-    <h1>Namn på produkt</h1>
-    <table class="nav-justified">
-        <tr>
-            <td class="auto-style1">
-                <img src="img/KAB-logo.png" alt="Bild på produkten" style="width:50%; height:50%"/>
-                </td>
-            <td class="auto-style2">&nbsp;</td>
-            <td class="auto-style3">Produktbeskrivning<br />
-                <asp:TextBox ID="TextBox1" runat="server" Height="38px" Width="124px"></asp:TextBox>
-                <asp:Button class="button" ID="Add" runat="server" Height="38px" Text="Lägg i varukorg" Width="120px" />
-            </td>
-        </tr>
-    </table>
-&nbsp;<p>&nbsp;</p>
-<%--    Här skriver vi allt--%>
+    <div class="detail" id="detail" runat="server">
         </div>
 </asp:Content>
