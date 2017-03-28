@@ -10,24 +10,15 @@
 namespace Kontorsprylar {
     
     
-    public partial class details {
+    public partial class CheckLoggIn {
         
         /// <summary>
-        /// detail control.
+        /// info control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl detail;
-        
-        /// <summary>
-        /// btnAddToCart control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddToCart;
+        protected global::System.Web.UI.WebControls.Literal info;
     }
 }

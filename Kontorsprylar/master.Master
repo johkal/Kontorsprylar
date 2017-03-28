@@ -11,15 +11,6 @@
     <script src="Scripts/bootstrap.js"></script>
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="StyleSheet.css" rel="stylesheet" />
-    <style type="text/css">
-        .auto-style1 {
-            position: center;
-            display: table;
-            border-collapse: separate;
-            max-width: 300px;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
     <form id="form1" runat="server">
