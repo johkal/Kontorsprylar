@@ -8,15 +8,17 @@
     </div>
 
     <div id="addProduct" class="addProduct" runat="server">
-        <p>Produktnamn: <asp:TextBox ID="TextBoxProductName" runat="server"></asp:TextBox>
-        <p>Artikelnummer: <asp:TextBox ID="TextBoxProductNumber" runat="server"></asp:TextBox></p>
-        <p>Lagersaldo: <asp:TextBox ID="TextBoxNrInStock" runat="server"></asp:TextBox></p>
-        <p>Nettopris: <asp:TextBox ID="TextBoxNetPrice" runat="server"></asp:TextBox></p>
-        <p>Momssats: <asp:DropDownList ID="DropDownListVAT" runat="server"></asp:DropDownList></p>
-        <p>Kategori: <asp:DropDownList ID="DropDownListCategory" runat="server"></asp:DropDownList></p>
+        <h3>Lägg till produkt</h3>
+        <p>Produktnamn*: <asp:TextBox ID="TextBoxProductName" runat="server"></asp:TextBox>
+        <p>Artikelnummer*: <asp:TextBox ID="TextBoxProductNumber" runat="server"></asp:TextBox></p>
+        <p>Lagersaldo*: <asp:TextBox ID="TextBoxNrInStock" runat="server"></asp:TextBox></p>
+        <p>Nettopris*: <asp:TextBox ID="TextBoxNetPrice" runat="server"></asp:TextBox></p>
+        <p>Momssats*: <asp:DropDownList ID="DropDownListVAT" runat="server"></asp:DropDownList></p>
+        <p>Kategori*: <asp:DropDownList ID="DropDownListCategory" runat="server"></asp:DropDownList></p>
 
         <p>Beskrivning: <asp:TextBox ID="TextBoxProductDescription" runat="server" TextMode="MultiLine"></asp:TextBox></p>
         <p>Bild: <asp:FileUpload ID="FileUploadImage" runat="server" /></p>
-        <asp:Button ID="ButtonSubmit" runat="server" Text="Button" />
+        <asp:Button ID="ButtonSubmit" runat="server" Text="Button" OnClick="ButtonSubmit_Click" />
+        <p>Alla fält märkta med asterisk * måste fyllas i.</p>
     </div>
 </asp:Content>

@@ -83,6 +83,41 @@ namespace SQLKAB
             return produkter;
         }
 
+        public static List<Category> GetAllCategories()
+        {
+            List<Category> kategorier = new List<Category>();
+
+            SqlConnection persConnection = new SqlConnection(CON_STR);
+
+            try
+            {
+                persConnection.Open();
+
+                SqlCommand command = new SqlCommand("ReadAllCategories", persConnection);
+
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlDataReader dr = command.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    kategorier.Add(new Category(dr["ID"].ToString(), dr["Name"].ToString(), dr["ParentID"].ToString()));
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                persConnection.Close();
+            }
+
+            return kategorier;
+        }
+
+        public static List<VAT> 
+
         public static List<Product> GetProductsInCategory(int id)
         {
             List<Category> kategorier = GenerateProductMenu();
@@ -220,8 +255,9 @@ namespace SQLKAB
                 }
                 innerHTML += $@"<h1>{chosenProduct.Name}</h1><table class='nav-justified'><tr><td class='auto-style1'>";
                 innerHTML += $@"<img ID = 'detailsImg' src='data: image/jpeg;base64,{chosenProduct.Picture}' alt='{chosenProduct.Name}'/></td><td class='auto-style2'>&nbsp;</td>";
-                innerHTML += $@"<td class='auto-style3'><h2>{chosenProduct.NetPrice} kr exkl. moms</h2><br/><asp:TextBox ID = 'Antal' runat='server' Height='38px' Width='124px'></asp:TextBox>";
-                innerHTML += $@"<asp:Button class='button' ID='Add' runat='server' Height='38px' Text='Lägg i varukorg' Width='120px' />";
+                innerHTML += $@"<td class='auto-style3'><h2>{chosenProduct.NetPrice} kr exkl. moms</h2>";
+                innerHTML += $@"<input name='ctl00$main$Antal' type='text' id='main_Antal' style='height: 38px; width: 124px;' />";
+                innerHTML += $@"<input type = 'submit' name = 'ctl00$main$Add' value = 'Lägg i varukorg' id = 'main_Add' class='button' style='height:38px;width:120px;' />";
                 innerHTML += $@"<br/><p>Varor kvar i lager: {chosenProduct.NrInStock}</p></td></tr><tr><td class='auto-style1'>";
                 innerHTML += $@"<p>{chosenProduct.ItemInfo}</p></td><td class='auto-style2'>&nbsp;</td><td class='auto-style3'>&nbsp;</td></tr></table>";
             }
@@ -364,7 +400,7 @@ namespace SQLKAB
         }
     }
 
-    class ProductToCategory
+    public class ProductToCategory
     {
         public int ID { get; set; }
         public int PID { get; set; }
@@ -376,5 +412,10 @@ namespace SQLKAB
             PID = pid;
             CAID = caid;
         }
+    }
+
+    public class VAT
+    {
+        public string MyProperty { get; set; }
     }
 }
