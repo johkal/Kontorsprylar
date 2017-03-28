@@ -36,7 +36,7 @@ footer {
 }
 
 .leftMenu {
-    position: fixed;
+    float: left;
     width: 20%;
     height: 100%;
     max-width:20%;
@@ -51,10 +51,11 @@ footer {
 }
 
 #mainContent {
-    position: fixed;
-    left: 20%;
+    float: left;
+    /*left: 20%;*/
     width: 70%;
-    height: 120%;
+    /*height: 120%;*/
+    margin-bottom: 5em;
 }
 
 .jumbotron{
@@ -64,11 +65,11 @@ footer {
 
 #myCarousel{
     width:100%;
-    height: 500px;
+    height: 300px;
 }
 
 .carousel-image{    
-    height: 500px !important;
+    height: 300px !important;
     margin-left: 200px;
     margin-right: 60px;
 }
