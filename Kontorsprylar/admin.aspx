@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
 
     <div id="adminMenu" class="adminMenu" runat="server">
-        <input type="button" onclick="" value="Lägg till produkt" />
+        <asp:Button ID="ButtonAdd" runat="server" Text="Lägg till produkt" />
     </div>
 
     <div id="addProduct" class="addProduct" runat="server">
@@ -18,7 +18,7 @@
 
         <p>Beskrivning: <asp:TextBox ID="TextBoxProductDescription" runat="server" TextMode="MultiLine"></asp:TextBox></p>
         <p>Bild: <asp:FileUpload ID="FileUploadImage" runat="server" /></p>
-        <asp:Button ID="ButtonSubmit" runat="server" Text="Button" OnClick="ButtonSubmit_Click" />
+        <asp:Button ID="ButtonSubmit" runat="server" Text="Lägg till" OnClick="ButtonSubmit_Click" />
         <asp:Label ID="LabelSubmit" runat="server" Text="Alla fält märkta med asterisk * måste fyllas i."></asp:Label>
     </div>
 </asp:Content>
