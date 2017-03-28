@@ -4,8 +4,5 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
     <div id='indexPage' class='indexPage' runat='server'>
-
-
-            
     </div>
 </asp:Content>
