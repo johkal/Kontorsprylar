@@ -10,7 +10,7 @@ function loggin() {
         alert(data + 'JIPPI!');
     })
     .fail(function () {
-        alert(email);
+        alert("Något gick superfel.. Försök igen!");
     });
 };
 
@@ -22,15 +22,3 @@ function loggin() {
 //        alert("Fail!")
 //    });
 //});
-
-//function loggin() {
-//    alert("HEJ");
-//    var email = $('#email').val();
-//    var pwd = $('#pwd').val();
-
-//    $.post("CheckLoggIn.aspx",
-//    { name: "Donald Duck", city: "Duckburg" },
-//    function (data, status) {
-//        alert("Data: " + data + "\nStatus: " + status);
-//    });
-//}

@@ -15,6 +15,8 @@ namespace Kontorsprylar
             string pwd = Request["pwd"];
             string mail = Request["email"];
             string loginOK = SQL.CheckLogin(pwd, mail);
+            if(loginOK == "Success")
+                Session["IsLoggedIn"] = true;
 
             info.Text = loginOK;
 
