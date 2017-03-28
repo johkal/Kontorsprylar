@@ -68,7 +68,7 @@ namespace SQLKAB
 
                 while (dr.Read())
                 {
-                    produkter.Add(new Product(dr["ID"].ToString(), dr["Name"].ToString(), dr["ItemNumber"].ToString(), dr["NetPrice"].ToString(), dr["Picture"].ToString(), dr["ItemInfo"].ToString(), Convert.ToInt32(dr["NrInStock"]), dr["VATID"].ToString(), Convert.ToBoolean(dr["IsActive"])));
+                    produkter.Add(new Product(dr["ID"].ToString(), dr["Name"].ToString(), dr["ItemNumber"].ToString(), Convert.ToInt32(dr["NetPrice"]), dr["ItemInfo"].ToString(), Convert.ToInt32(dr["NrInStock"]), Convert.ToInt32(dr["VATID"]), Convert.ToBoolean(dr["IsActive"])));
                 }
             }
             catch (Exception)
@@ -270,9 +270,9 @@ namespace SQLKAB
                     chosenProduct.ItemInfo = myReader["ItemInfo"].ToString();
                     chosenProduct.ItemNumber = myReader["ItemNumber"].ToString();
                     chosenProduct.Name = myReader["Name"].ToString();
-                    chosenProduct.NetPrice = myReader["NetPrice"].ToString();
+                    chosenProduct.NetPrice = Convert.ToInt32(myReader["NetPrice"]);
                     chosenProduct.NrInStock = Convert.ToInt32(myReader["NrInStock"].ToString());
-                    chosenProduct.VATID = myReader["VATID"].ToString();
+                    chosenProduct.VATID = Convert.ToInt32(myReader["VATID"]);
 
                     string tempValue = myReader["IsActive"].ToString();
                     if (tempValue == "True")
@@ -420,9 +420,10 @@ namespace SQLKAB
                 persConnection.Open();
 
                 SqlCommand command = new SqlCommand();
+
                 command.Connection = persConnection;
 
-                command.CommandText = $"insert into Product (Name, ItemNumber, NetPrice, Picture, ItemInfo, NrInStock, VATID, IsActive) values('{product.Name}', '{product.ItemNumber}', '{product.NetPrice}' '{product.Picture}', '{ product.ItemInfo}', '{product.NrInStock}', '{product.VATID}', '{product.IsActive}')";
+                command.CommandText = $"insert into Product (Name, ItemNumber, NetPrice, ItemInfo, NrInStock, VATID, IsActive) values('{product.Name}', '{product.ItemNumber}', '{product.NetPrice}', '{ product.ItemInfo}', '{product.NrInStock}', '{product.VATID}', '{product.IsActive}')";
 
                 int nrRows = command.ExecuteNonQuery();
 
@@ -434,7 +435,7 @@ namespace SQLKAB
             }
             catch (Exception exception)
             {
-                Console.WriteLine(exception.Message);
+                
             }
             finally
             {
@@ -471,11 +472,11 @@ namespace SQLKAB
         public string ID { get; set; }
         public string Name { get; set; }
         public string ItemNumber { get; set; }
-        public string NetPrice { get; set; }
+        public int NetPrice { get; set; }
         public string Picture { get; set; }
         public string ItemInfo { get; set; }
         public int NrInStock { get; set; }
-        public string VATID { get; set; }
+        public int VATID { get; set; }
         public bool IsActive { get; set; }
 
         public Product()
@@ -483,14 +484,13 @@ namespace SQLKAB
 
         }
 
-        public Product(string id, string name, string itemNumber, string netPrice, string picture, string intemInfo, int nrInStock, string vatId, bool isActive)
+        public Product(string id, string name, string itemNumber, int netPrice, string itemInfo, int nrInStock, int vatId, bool isActive)
         {
             ID = id;
             Name = name;
             ItemNumber = itemNumber;
             NetPrice = netPrice;
-            Picture = picture;
-            ItemInfo = ItemInfo;
+            ItemInfo = itemInfo;
             NrInStock = nrInStock;
             VATID = vatId;
             IsActive = isActive;

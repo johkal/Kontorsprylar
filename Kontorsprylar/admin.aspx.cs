@@ -30,7 +30,23 @@ namespace Kontorsprylar
 
         public void ButtonSubmit_Click(object sender, EventArgs e)
         {
-            SQLKAB.Product produkt = new SQLKAB.Product("1", TextBoxProductName.Text, TextBoxProductNumber.Text, TextBoxNetPrice.Text, "", TextBoxProductDescription.Text, Convert.ToInt32(TextBoxNrInStock.Text), DropDownListVAT.Text, true);
+            string[] momsText = DropDownListVAT.SelectedItem.Text.Split(' ');
+
+            double momsSum = Convert.ToDouble(momsText[1]);
+
+            int momsID = 1;
+
+            List<SQLKAB.VAT> vatList = SQLKAB.SQL.GetAllVAT();
+
+            foreach (var vat in vatList)
+            {
+                if (vat.Rate==momsSum)
+                {
+                    momsID = Convert.ToInt32(vat.ID);
+                }
+            }
+
+            SQLKAB.Product produkt = new SQLKAB.Product("1", TextBoxProductName.Text, TextBoxProductNumber.Text, Convert.ToInt32(TextBoxNetPrice.Text), TextBoxProductDescription.Text, Convert.ToInt32(TextBoxNrInStock.Text), momsID, true);
 
             bool success = SQLKAB.SQL.CreateProduct(produkt);
 
@@ -40,7 +56,7 @@ namespace Kontorsprylar
             }
             else
             {
-                LabelSubmit.Text = "Ett fel inträffade";
+                LabelSubmit.Text = TextBoxProductDescription.Text.ToString();
             }
         }
     }

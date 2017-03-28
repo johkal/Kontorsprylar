@@ -17,5 +17,6 @@ namespace Kontorsprylar
             string leftMenuInnerHtml = SQL.GenerateLeftMenu(categories);
             leftMenu.InnerHtml = leftMenuInnerHtml;
         }
+
     }
 }

@@ -24,24 +24,24 @@
 <body>
     <form id="form1" runat="server">
         <div class="jumbotron">
-           
-                <%--<img src="img/KAB-logo.png" />--%>
-                <h1 class="text-center">Kontorsprylar AB</h1>
-                <br />
-                    <div class="input-group" style="text-align: center">
-                        <input type="text" class="form-control" placeholder="Vad behöver du till ditt kontor?">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                <br />
-                <button type="button" class="btn btn-link">
-                </button>
-                <p class="text-right">                   
-                    <a href="http://localhost:60227/account.aspx">Logga in / skapa konto</a>
-                </p>
+
+            <%--<img src="img/KAB-logo.png" />--%>
+            <h1 class="text-center">Kontorsprylar AB</h1>
+            <br />
+            <div class="input-group" style="text-align: center">
+                <input type="text" class="form-control" placeholder="Vad behöver du till ditt kontor?">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </div>
+            </div>
+            <br />
+            <button type="button" class="btn btn-link">
+            </button>
+            <p class="text-right">
+                <a href="account.aspx">Logga in / skapa konto</a>
+            </p>
 
         </div>
 
