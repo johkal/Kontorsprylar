@@ -69,3 +69,8 @@ footer {
   width:100%;
   
 }
+
+#detailsImg{
+    width: 200px; 
+    height: 200px;
+}
