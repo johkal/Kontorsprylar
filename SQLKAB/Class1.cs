@@ -380,7 +380,7 @@ namespace SQLKAB
 
         public static string CheckLogin(string password, string email)
         {
-            string loginOK = "fail";
+            string loginOK = "Fail";
             SqlConnection myConnection = new SqlConnection(CON_STR);
             try
             {
@@ -394,9 +394,15 @@ namespace SQLKAB
                 SqlParameter mail = new SqlParameter("@Email", email);
                 myCommand.Parameters.Add(mail);
 
-                int nrOfCorrect = myCommand.ExecuteNonQuery();
+                SqlDataReader myReader = myCommand.ExecuteReader();
 
-                if (nrOfCorrect == 0)
+                int test = 0;
+                while(myReader.Read())
+                {
+                    test = Convert.ToInt32(myReader["ID"]);
+                }
+
+                if (test > 0)
                     loginOK = "Success";
 
             }
