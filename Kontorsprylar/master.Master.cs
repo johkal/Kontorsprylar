@@ -25,21 +25,21 @@ namespace Kontorsprylar
             List <Category> allCategories = SQL.GetAllCategories();
             List<Category> matchingCategories = new List<Category>();
 
-            foreach (var prod in allProducts)
-            {
-                if (prod.Name.ToLower().StartsWith(TextBoxMyQuery.Text.ToLower()))
-                {
-                    matchingProducts.Add(prod);
-                }
-            }
+            //foreach (var prod in allProducts)
+            //{
+            //    if (prod.Name.ToLower().StartsWith(TextBoxMyQuery.Text.ToLower()))
+            //    {
+            //        matchingProducts.Add(prod);
+            //    }
+            //}
 
-            foreach (var cat in allCategories)
-            {
-                if (cat.Name.ToLower().StartsWith(TextBoxMyQuery.Text.ToLower()))
-                {
-                    matchingCategories.Add(cat);
-                }
-            }
+            //foreach (var cat in allCategories)
+            //{
+            //    if (cat.Name.ToLower().StartsWith(TextBoxMyQuery.Text.ToLower()))
+            //    {
+            //        matchingCategories.Add(cat);
+            //    }
+            //}
 
             foreach (var cat in matchingCategories)
             {

@@ -97,6 +97,7 @@
     <Content Include="account.js" />
     <Content Include="admin.aspx" />
     <Content Include="account.aspx" />
+    <Content Include="cart.aspx" />
     <Content Include="category.aspx" />
     <Content Include="CheckLoggIn.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -157,6 +158,13 @@
     </Compile>
     <Compile Include="admin.aspx.designer.cs">
       <DependentUpon>admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cart.aspx.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cart.aspx.designer.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
     </Compile>
     <Compile Include="category.aspx.cs">
       <DependentUpon>category.aspx</DependentUpon>
