@@ -15,7 +15,6 @@ namespace Kontorsprylar
             string PID = Request["PID"];
             string detailInnerHTML = SQL.GenerateDetailsInnerHTML(PID);
             detail.InnerHtml = detailInnerHTML;
-
         }
     }
 }

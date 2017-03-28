@@ -116,7 +116,6 @@ namespace SQLKAB
             return kategorier;
         }
 
-        public static List<VAT> 
 
         public static List<Product> GetProductsInCategory(int id)
         {
