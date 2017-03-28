@@ -13,12 +13,3 @@ function loggin() {
         alert("Något gick superfel.. Försök igen!");
     });
 };
-
-
-//    .done(function (data) {
-//        $("#LabelWhatever").text(data);
-//    })
-//    .fail(function () {
-//        alert("Fail!")
-//    });
-//});
