@@ -15,7 +15,7 @@ namespace SQLKAB
 
         public static Category FindCategory(string id)
         {
-            Category category = new Category("","","");
+            Category category = new Category("", "", "");
 
             SqlConnection persConnection = new SqlConnection(CON_STR);
 
@@ -116,6 +116,38 @@ namespace SQLKAB
             return kategorier;
         }
 
+        public static List<VAT> GetAllVAT()
+        {
+            List<VAT> moms = new List<VAT>();
+
+            SqlConnection persConnection = new SqlConnection(CON_STR);
+
+            try
+            {
+                persConnection.Open();
+
+                SqlCommand command = new SqlCommand("ReadAllVAT", persConnection);
+
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlDataReader dr = command.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    moms.Add(new VAT(dr["ID"].ToString(), dr["Category"].ToString(), Convert.ToDouble(dr["Rate"])));
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                persConnection.Close();
+            }
+
+            return moms;
+        }
 
         public static List<Product> GetProductsInCategory(int id)
         {
@@ -255,7 +287,7 @@ namespace SQLKAB
                 innerHTML += $@"<h1>{chosenProduct.Name}</h1><table class='nav-justified'><tr><td class='auto-style1'>";
                 innerHTML += $@"<img ID = 'detailsImg' src='data: image/jpeg;base64,{chosenProduct.Picture}' alt='{chosenProduct.Name}'/></td><td class='auto-style2'>&nbsp;</td>";
                 innerHTML += $@"<td class='auto-style3'><h2>{chosenProduct.NetPrice} kr exkl. moms</h2>";
-                innerHTML += $@"<input name='ctl00$main$Antal' type='text' id='main_Antal' style='height: 38px; width: 124px;' />";
+                innerHTML += $@"<input name='ctl00$main$Antal' type='text' id='main_Antal' placeholder='1' style='height: 38px; width: 124px;' />";
                 innerHTML += $@"<input type = 'submit' name = 'ctl00$main$Add' value = 'Lägg i varukorg' id = 'main_Add' class='button' style='height:38px;width:120px;' />";
                 innerHTML += $@"<br/><p>Varor kvar i lager: {chosenProduct.NrInStock}</p></td></tr><tr><td class='auto-style1'>";
                 innerHTML += $@"<p>{chosenProduct.ItemInfo}</p></td><td class='auto-style2'>&nbsp;</td><td class='auto-style3'>&nbsp;</td></tr></table>";
@@ -270,7 +302,7 @@ namespace SQLKAB
             }
 
             return innerHTML;
-        }   
+        }
 
         public static string GenerateIndexCarousel(List<Category> categories)
         {
@@ -346,6 +378,41 @@ namespace SQLKAB
             return leftMenuInnerText;
         }
 
+        public static bool CreateProduct(Product product)
+        {
+            bool success = false;
+
+            SqlConnection persConnection = new SqlConnection(CON_STR);
+
+            try
+            {
+                persConnection.Open();
+
+                SqlCommand command = new SqlCommand();
+                command.Connection = persConnection;
+
+                command.CommandText = $"insert into Product (Name, ItemNumber, NetPrice, Picture, ItemInfo, NrInStock, VATID, IsActive) values('{product.Name}', '{product.ItemNumber}', '{product.NetPrice}' '{product.Picture}', '{ product.ItemInfo}', '{product.NrInStock}', '{product.VATID}', '{product.IsActive}')";
+
+                int nrRows = command.ExecuteNonQuery();
+
+                if (nrRows > 0)
+                {
+                    success = true;
+                }
+
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            finally
+            {
+                persConnection.Close();
+            }
+
+            return success;
+        }
+
         public bool CreateOrder()
         {
             bool success = false;
@@ -415,6 +482,20 @@ namespace SQLKAB
 
     public class VAT
     {
-        public string MyProperty { get; set; }
+        public string ID { get; set; }
+        public string Category { get; set; }
+        public double Rate { get; set; }
+
+        public VAT(string id, string category, double rate)
+        {
+            ID = id;
+            Category = category;
+            Rate = rate;
+        }
+
+        public VAT()
+        {
+
+        }
     }
 }
