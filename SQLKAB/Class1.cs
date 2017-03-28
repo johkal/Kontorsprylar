@@ -185,30 +185,52 @@ namespace SQLKAB
             string innerHTML = "";
 
             Product chosenProduct = new Product();
-
             SqlConnection myConnection = new SqlConnection(CON_STR);
-            SqlCommand myCommand = new SqlCommand("ReadProductsOnID", myConnection);
 
+            try
+            {
+                SqlCommand myCommand = new SqlCommand("ReadProduct", myConnection);
+                myConnection.Open();
 
+                myCommand.CommandType = CommandType.StoredProcedure;
+                SqlParameter ID = new SqlParameter("@ID", PID);
+                myCommand.Parameters.Add(ID);
 
+                SqlDataReader myReader = myCommand.ExecuteReader();
+
+                while(myReader.Read())
+                {
+                    chosenProduct.ID = myReader["ID"].ToString();
+                    chosenProduct.ItemInfo = myReader["ItemInfo"].ToString();
+                    chosenProduct.ItemNumber = myReader["ItemNumber"].ToString();
+                    chosenProduct.Name = myReader["Name"].ToString();
+                    chosenProduct.NetPrice = myReader["NetPrice"].ToString();
+                    chosenProduct.NrInStock = Convert.ToInt32(myReader["NrInStock"].ToString());
+                    chosenProduct.VATID = myReader["VATID"].ToString();
+
+                    string tempValue = myReader["IsActive"].ToString();
+                    if (tempValue == "True")
+                        chosenProduct.IsActive = true;
+                    else
+                        chosenProduct.IsActive = false;
+                    
+                    //var image = (byte[])myReader["Picture"];
+                    //if(image != null)
+                    //    chosenProduct.Picture = Convert.ToBase64String(image);
+
+                }
+            }
+            catch (Exception)
+            {
+                innerHTML += "<h1>Oops! Något blev fel.. Försök igen :) </h1>";
+            }
+            finally
+            {
+                myConnection.Close();
+            }
 
             return innerHTML;
-
-            //              <h1> Namn på produkt</h1>
-
-            //     <table class="nav-justified">
-            //    <tr>
-            //        <td class="auto-style1">
-            //            <img src = "img/KAB-logo.png" alt="Bild på produkten" style="width:50%; height:50%"/>
-            //            </td>
-            //        <td class="auto-style2">&nbsp;</td>
-            //        <td class="auto-style3">Produktbeskrivning<br />
-            //            <asp:TextBox ID = "TextBox1" runat="server" Height="38px" Width="124px"></asp:TextBox>
-            //            <asp:Button class="button" ID="Add" runat="server" Height="38px" Text="Lägg i varukorg" Width="120px" />
-            //        </td>
-            //    </tr>
-            //</table>
-        }
+        }   
 
         public static string GenerateIndexCarousel(List<Category> categories)
         {
