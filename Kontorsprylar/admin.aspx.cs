@@ -45,7 +45,7 @@ namespace Kontorsprylar
                 }
             }
 
-            SQLKAB.Product produkt = new SQLKAB.Product("1", TextBoxProductName.Text, TextBoxProductNumber.Text, Convert.ToInt32(TextBoxNetPrice.Text), TextBoxProductDescription.Text, Convert.ToInt32(TextBoxNrInStock.Text), momsID, true);
+            SQLKAB.Product produkt = new SQLKAB.Product("1", TextBoxProductName.Text, TextBoxProductNumber.Text, Convert.ToInt32(TextBoxNetPrice.Text), TextBoxProductDescription.Text, Convert.ToInt32(TextBoxNrInStock.Text), momsID, 1);
 
             bool success = SQLKAB.SQL.CreateProduct(produkt);
 

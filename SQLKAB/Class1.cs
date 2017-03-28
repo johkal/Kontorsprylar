@@ -68,7 +68,7 @@ namespace SQLKAB
 
                 while (dr.Read())
                 {
-                    produkter.Add(new Product(dr["ID"].ToString(), dr["Name"].ToString(), dr["ItemNumber"].ToString(), Convert.ToInt32(dr["NetPrice"]), dr["ItemInfo"].ToString(), Convert.ToInt32(dr["NrInStock"]), Convert.ToInt32(dr["VATID"]), Convert.ToBoolean(dr["IsActive"])));
+                    produkter.Add(new Product(dr["ID"].ToString(), dr["Name"].ToString(), dr["ItemNumber"].ToString(), Convert.ToInt32(dr["NetPrice"]), dr["ItemInfo"].ToString(), Convert.ToInt32(dr["NrInStock"]), Convert.ToInt32(dr["VATID"]), Convert.ToInt32(dr["IsActive"])));
                 }
             }
             catch (Exception)
@@ -243,9 +243,9 @@ namespace SQLKAB
 
                     string tempValue = myReader["IsActive"].ToString();
                     if (tempValue == "True")
-                        chosenProduct.IsActive = true;
+                        chosenProduct.IsActive = 1;
                     else
-                        chosenProduct.IsActive = false;
+                        chosenProduct.IsActive = 0;
 
                     //var image = (byte[])myReader["Picture"];
                     //if(image != null)
@@ -394,7 +394,7 @@ namespace SQLKAB
 
                 command.Connection = persConnection;
 
-                command.CommandText = $"insert into Product (Name, ItemNumber, NetPrice, ItemInfo, NrInStock, VATID, IsActive) values('{product.Name}', '{product.ItemNumber}', '{product.NetPrice}', '{ product.ItemInfo}', '{product.NrInStock}', '{product.VATID}', '1')";
+                command.CommandText = $"insert into Product (Name, ItemNumber, NetPrice, ItemInfo, NrInStock, VATID, IsActive) values ('{product.Name}', '{product.ItemNumber}', '{product.NetPrice}', '{ product.ItemInfo}', '{product.NrInStock}', '{product.VATID}', '{product.IsActive}')";
 
                 int nrRows = command.ExecuteNonQuery();
 
@@ -443,19 +443,19 @@ namespace SQLKAB
         public string ID { get; set; }
         public string Name { get; set; }
         public string ItemNumber { get; set; }
-        public int NetPrice { get; set; }
+        public double NetPrice { get; set; }
         public string Picture { get; set; }
         public string ItemInfo { get; set; }
         public int NrInStock { get; set; }
         public int VATID { get; set; }
-        public bool IsActive { get; set; }
+        public int IsActive { get; set; }
 
         public Product()
         {
 
         }
 
-        public Product(string id, string name, string itemNumber, int netPrice, string itemInfo, int nrInStock, int vatId, bool isActive)
+        public Product(string id, string name, string itemNumber, double netPrice, string itemInfo, int nrInStock, int vatId, int isActive)
         {
             ID = id;
             Name = name;
