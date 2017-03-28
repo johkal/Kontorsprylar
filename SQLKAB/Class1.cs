@@ -15,7 +15,7 @@ namespace SQLKAB
 
         public static Category FindCategory(string id)
         {
-            Category category = new Category("","","");
+            Category category = new Category("", "", "");
 
             SqlConnection persConnection = new SqlConnection(CON_STR);
 
@@ -68,7 +68,7 @@ namespace SQLKAB
 
                 while (dr.Read())
                 {
-                    produkter.Add(new Product(dr["ID"].ToString(), dr["Name"].ToString(), dr["ItemNumber"].ToString(), dr["NetPrice"].ToString(), dr["Picture"].ToString(), dr["ItemInfo"].ToString(), Convert.ToInt32(dr["NrInStock"]), dr["VATID"].ToString(), Convert.ToBoolean(dr["IsActive"])));
+                    produkter.Add(new Product(dr["ID"].ToString(), dr["Name"].ToString(), dr["ItemNumber"].ToString(), Convert.ToInt32(dr["NetPrice"]), dr["ItemInfo"].ToString(), Convert.ToInt32(dr["NrInStock"]), Convert.ToInt32(dr["VATID"]), Convert.ToBoolean(dr["IsActive"])));
                 }
             }
             catch (Exception)
@@ -115,6 +115,7 @@ namespace SQLKAB
 
             return kategorier;
         }
+
 
         public static List<Product> GetProductsInCategory(int id)
         {
@@ -237,9 +238,9 @@ namespace SQLKAB
                     chosenProduct.ItemInfo = myReader["ItemInfo"].ToString();
                     chosenProduct.ItemNumber = myReader["ItemNumber"].ToString();
                     chosenProduct.Name = myReader["Name"].ToString();
-                    chosenProduct.NetPrice = myReader["NetPrice"].ToString();
+                    chosenProduct.NetPrice = Convert.ToInt32(myReader["NetPrice"]);
                     chosenProduct.NrInStock = Convert.ToInt32(myReader["NrInStock"].ToString());
-                    chosenProduct.VATID = myReader["VATID"].ToString();
+                    chosenProduct.VATID = Convert.ToInt32(myReader["VATID"]);
 
                     string tempValue = myReader["IsActive"].ToString();
                     if (tempValue == "True")
@@ -254,7 +255,7 @@ namespace SQLKAB
                 innerHTML += $@"<h1>{chosenProduct.Name}</h1><table class='nav-justified'><tr><td class='auto-style1'>";
                 innerHTML += $@"<img ID = 'detailsImg' src='data: image/jpeg;base64,{chosenProduct.Picture}' alt='{chosenProduct.Name}'/></td><td class='auto-style2'>&nbsp;</td>";
                 innerHTML += $@"<td class='auto-style3'><h2>{chosenProduct.NetPrice} kr exkl. moms</h2>";
-                innerHTML += $@"<input name='ctl00$main$Antal' type='text' id='main_Antal' style='height: 38px; width: 124px;' />";
+                innerHTML += $@"<input name='ctl00$main$Antal' type='text' id='main_Antal' placeholder='1' style='height: 38px; width: 124px;' />";
                 innerHTML += $@"<input type = 'submit' name = 'ctl00$main$Add' value = 'Lägg i varukorg' id = 'main_Add' class='button' style='height:38px;width:120px;' />";
                 innerHTML += $@"<br/><p>Varor kvar i lager: {chosenProduct.NrInStock}</p></td></tr><tr><td class='auto-style1'>";
                 innerHTML += $@"<p>{chosenProduct.ItemInfo}</p></td><td class='auto-style2'>&nbsp;</td><td class='auto-style3'>&nbsp;</td></tr></table>";
@@ -269,7 +270,7 @@ namespace SQLKAB
             }
 
             return innerHTML;
-        }   
+        }
 
         public static string GenerateIndexCarousel(List<Category> categories)
         {
@@ -345,6 +346,77 @@ namespace SQLKAB
             return leftMenuInnerText;
         }
 
+        public static string CheckLogin(string password, string email)
+        {
+            string loginOK = "fail";
+            SqlConnection myConnection = new SqlConnection(CON_STR);
+            try
+            {
+                myConnection.Open();
+                SqlCommand myCommand = new SqlCommand("CheckLogin", myConnection);
+                myCommand.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter pwd = new SqlParameter("@SecretWord", password);
+                myCommand.Parameters.Add(pwd);
+
+                SqlParameter mail = new SqlParameter("@Email", email);
+                myCommand.Parameters.Add(mail);
+
+                int nrOfCorrect = myCommand.ExecuteNonQuery();
+
+                if (nrOfCorrect == 0)
+                    loginOK = "Success";
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+
+            return loginOK;
+        }
+
+        public static bool CreateProduct(Product product)
+        {
+            bool success = false;
+
+            SqlConnection persConnection = new SqlConnection(CON_STR);
+
+            try
+            {
+                persConnection.Open();
+
+                SqlCommand command = new SqlCommand();
+
+                command.Connection = persConnection;
+
+                command.CommandText = $"insert into Product (Name, ItemNumber, NetPrice, ItemInfo, NrInStock, VATID, IsActive) values('{product.Name}', '{product.ItemNumber}', '{product.NetPrice}', '{ product.ItemInfo}', '{product.NrInStock}', '{product.VATID}', '1')";
+
+                int nrRows = command.ExecuteNonQuery();
+
+                if (nrRows > 0)
+                {
+                    success = true;
+                }
+
+            }
+            catch (Exception exception)
+            {
+                
+            }
+            finally
+            {
+                persConnection.Close();
+            }
+
+            return success;
+        }
+
         public bool CreateOrder()
         {
             bool success = false;
@@ -372,11 +444,11 @@ namespace SQLKAB
         public string ID { get; set; }
         public string Name { get; set; }
         public string ItemNumber { get; set; }
-        public string NetPrice { get; set; }
+        public int NetPrice { get; set; }
         public string Picture { get; set; }
         public string ItemInfo { get; set; }
         public int NrInStock { get; set; }
-        public string VATID { get; set; }
+        public int VATID { get; set; }
         public bool IsActive { get; set; }
 
         public Product()
@@ -384,14 +456,13 @@ namespace SQLKAB
 
         }
 
-        public Product(string id, string name, string itemNumber, string netPrice, string picture, string intemInfo, int nrInStock, string vatId, bool isActive)
+        public Product(string id, string name, string itemNumber, int netPrice, string itemInfo, int nrInStock, int vatId, bool isActive)
         {
             ID = id;
             Name = name;
             ItemNumber = itemNumber;
             NetPrice = netPrice;
-            Picture = picture;
-            ItemInfo = ItemInfo;
+            ItemInfo = itemInfo;
             NrInStock = nrInStock;
             VATID = vatId;
             IsActive = isActive;
@@ -414,6 +485,20 @@ namespace SQLKAB
 
     public class VAT
     {
-        public string MyProperty { get; set; }
+        public string ID { get; set; }
+        public string Category { get; set; }
+        public double Rate { get; set; }
+
+        public VAT(string id, string category, double rate)
+        {
+            ID = id;
+            Category = category;
+            Rate = rate;
+        }
+
+        public VAT()
+        {
+
+        }
     }
 }

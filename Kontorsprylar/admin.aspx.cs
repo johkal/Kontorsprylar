@@ -19,15 +19,44 @@ namespace Kontorsprylar
                 DropDownListCategory.Items.Add(kategori.Name);
             }
 
-            DropDownListVAT.Items.Add("Normal moms 25%");
-            DropDownListVAT.Items.Add("Bokmoms 6%");
+            List<SQLKAB.VAT> moms = SQLKAB.SQL.GetAllVAT();
 
-            ButtonSubmit.Text="Lägg till";
+            foreach (var mom in moms)
+            {
+                DropDownListVAT.Items.Add($"{ mom.Category} {mom.Rate}");
+            }
         }
 
-        protected void ButtonSubmit_Click(object sender, EventArgs e)
+        public void ButtonSubmit_Click(object sender, EventArgs e)
         {
-            //SQLKAB.SQL.CreateProduct();
+            string[] momsText = DropDownListVAT.SelectedItem.Text.Split(' ');
+
+            double momsSum = Convert.ToDouble(momsText[1]);
+
+            int momsID = 1;
+
+            List<SQLKAB.VAT> vatList = SQLKAB.SQL.GetAllVAT();
+
+            foreach (var vat in vatList)
+            {
+                if (vat.Rate==momsSum)
+                {
+                    momsID = Convert.ToInt32(vat.ID);
+                }
+            }
+
+            SQLKAB.Product produkt = new SQLKAB.Product("1", TextBoxProductName.Text, TextBoxProductNumber.Text, Convert.ToInt32(TextBoxNetPrice.Text), TextBoxProductDescription.Text, Convert.ToInt32(TextBoxNrInStock.Text), momsID, true);
+
+            bool success = SQLKAB.SQL.CreateProduct(produkt);
+
+            if (success)
+            {
+                LabelSubmit.Text = "Produkten lades till";
+            }
+            else
+            {
+                LabelSubmit.Text = TextBoxProductDescription.Text.ToString();
+            }
         }
     }
 }
