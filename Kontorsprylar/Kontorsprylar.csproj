@@ -165,10 +165,6 @@
     <Compile Include="category.aspx.designer.cs">
       <DependentUpon>category.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Content\test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="test.aspx.designer.cs">
       <DependentUpon>test.aspx</DependentUpon>
     </Compile>
