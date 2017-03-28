@@ -256,8 +256,8 @@ namespace SQLKAB
                 innerHTML += $@"<img ID = 'detailsImg' src='data: image/jpeg;base64,{chosenProduct.Picture}' alt='{chosenProduct.Name}'/></td><td class='auto-style2'>&nbsp;</td>";
                 innerHTML += $@"<td class='auto-style3'><h2>{chosenProduct.NetPrice} kr exkl. moms</h2>";
                 innerHTML += $@"<input name='ctl00$main$Antal' type='text' id='main_Antal' placeholder='1' style='height: 38px; width: 124px;' />";
-                innerHTML += $@"<input type = 'submit' name = 'ctl00$main$Add' value = 'Lägg i varukorg' id = 'main_Add' class='button' style='height:38px;width:120px;' />";
                 innerHTML += $@"<br/><p>Varor kvar i lager: {chosenProduct.NrInStock}</p></td></tr><tr><td class='auto-style1'>";
+                innerHTML += $@"<input type = 'submit' name = 'ctl00$main$Add' value = 'Lägg i varukorg' id = 'main_Add' onclick  class='button' style='height:38px;width:120px;' />";
                 innerHTML += $@"<p>{chosenProduct.ItemInfo}</p></td><td class='auto-style2'>&nbsp;</td><td class='auto-style3'>&nbsp;</td></tr></table>";
             }
             catch (Exception)
