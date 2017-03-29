@@ -603,9 +603,38 @@ namespace SQLKAB
             return success;
         }
 
-        public bool CreateOrder()
+        public static bool CreateOrder(int customerId, DateTime orderDate, int freighterId, int shippingAddressId, int invoiceAddressId)
         {
             bool success = false;
+
+            SqlConnection persConnection = new SqlConnection(CON_STR);
+
+            try
+            {
+                persConnection.Open();
+
+                SqlCommand command = new SqlCommand();
+
+                command.Connection = persConnection;
+
+                command.CommandText = $"insert into Orders(CustomerID, OrderDate, FreighterID, ShippingAddressID, InvoiceAddressID) values ('{customerId}', '{orderDate}', '{freighterId}', '{shippingAddressId}', '{invoiceAddressId}')";
+
+                int nrRows = command.ExecuteNonQuery();
+
+                if (nrRows > 0)
+                {
+                    success = true;
+                }
+
+            }
+            catch (Exception exception)
+            {
+
+            }
+            finally
+            {
+                persConnection.Close();
+            }
 
             return success;
         }
