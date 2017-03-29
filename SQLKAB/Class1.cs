@@ -50,6 +50,49 @@ namespace SQLKAB
             return category;
         }
 
+        public static Product FindProduct(string id)
+        {
+            Product prod = new Product();
+
+            SqlConnection persConnection = new SqlConnection(CON_STR);
+
+            try
+            {
+                persConnection.Open();
+
+                SqlCommand command = new SqlCommand("ReadProduct", persConnection);
+
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add(new SqlParameter("@ID", id));
+
+                SqlDataReader dr = command.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    prod.ID = dr["ID"].ToString();
+                    prod.Name = dr["Name"].ToString();
+                    prod.ItemNumber = dr["ItemNumber"].ToString();
+                    prod.NetPrice = Convert.ToDouble(dr["NetPrice"]);
+                    prod.Picture = "";
+                    prod.ItemInfo = dr["ItemInfo"].ToString();
+                    prod.NrInStock = Convert.ToInt32(dr["NrInStock"]);
+                    prod.VATID = Convert.ToInt32(dr["VATID"]);
+                    prod.IsActive = Convert.ToInt32(dr["IsActive"]);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                persConnection.Close();
+            }
+
+            return prod;
+        }
+
         public static string AddCustomer(string fname, string lname, string mail, string passw, string phone, string address, string floor, string portcode, string city, string zip)
         {
             SqlConnection myConnection = new SqlConnection(CON_STR);
