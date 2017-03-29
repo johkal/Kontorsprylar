@@ -105,6 +105,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="logout.aspx" />
     <Content Include="searchResult.aspx" />
     <Content Include="test.aspx" />
     <Content Include="details.aspx" />
@@ -188,6 +189,13 @@
     </Compile>
     <Compile Include="CheckLoggIn.aspx.designer.cs">
       <DependentUpon>CheckLoggIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="searchResult.aspx.cs">
       <DependentUpon>searchResult.aspx</DependentUpon>

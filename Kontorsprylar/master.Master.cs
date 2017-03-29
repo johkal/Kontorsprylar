@@ -21,10 +21,17 @@ namespace Kontorsprylar
             {
                 if (Session["IsLoggedIn"].ToString() == "true")
                 {
-                    string myMessage = $"Du är inloggad.";
-                    ClientScriptManager cs = Page.ClientScript;
-                    cs.RegisterStartupScript(this.GetType(), "myalert", "alert('" + myMessage + "');", true);
+                    isIn.InnerHtml = $@"<a href = 'logout.aspx'> Logga ut! </a>";
                 }
+                else
+                {
+                    isIn.InnerHtml = $@"<a href = 'account.aspx'> Logga in / skapa konto </a>";
+                }
+                   
+            }
+            else
+            {
+                isIn.InnerHtml = $@"<a href = 'account.aspx'> Logga in / skapa konto </a>";
             }
         }
 

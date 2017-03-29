@@ -1,6 +1,18 @@
 ﻿/// <reference path="C:\Users\Administrator\Source\Repos\Kontorsprylar\Kontorsprylar\Scripts/jquery-1.9.1.js" />
 /// <reference path="C:\Users\Administrator\Source\Repos\Kontorsprylar\Kontorsprylar\Scripts/jquery-1.9.1.intellisense.js" />
 
+//$(document).ready(function() {
+//    var email = $('#email').val();
+//    var password = $('#pwd').val();
+//    $.get('CheckLoggIn.aspx?email=' + email + '&pwd=' + password)
+//    .done(function (data) {
+//        alert(data + 'JIPPI!');
+//    })
+//    .fail(function () {
+//        alert("Något gick superfel.. Eller så var det första gången du försökte?? Isf kanske allt gick bra ändå :)");
+//    });
+//});
+
 
 function loggin() {
     var email = $('#email').val();
@@ -10,7 +22,7 @@ function loggin() {
         alert(data + 'JIPPI!');
     })
     .fail(function () {
-        alert("Något gick superfel.. Försök igen!");
+        alert("Något gick superfel.. Eller så var det första gången du försökte?? Isf kanske allt gick bra ändå :)");
     });
 };
 
@@ -31,6 +43,6 @@ function addCust() {
         alert(data + 'Jippi!');
     })
     .fail(function () {
-        alert("Något gick superfel.. Försök igen!");
+        alert("Något gick superfel.. Eller så var det första gången du försökte?? Isf kanske allt gick bra ändå :)");
     });
 };
