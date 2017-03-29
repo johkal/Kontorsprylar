@@ -83,15 +83,19 @@ namespace SQLKAB
                 SqlParameter email = new SqlParameter("@Email", mail);
                 myCommand.Parameters.Add(email);
 
-                SqlParameter isAdmin = new SqlParameter("@IsAdmin", 0); //BLIR DEN GLAD OM DEN ÄR EN ETTA??
+                SqlParameter isAdmin = new SqlParameter("@IsAdmin", 1); //BLIR DEN GLAD OM DEN ÄR EN ETTA??
                 myCommand.Parameters.Add(isAdmin);
 
                 SqlParameter isActive = new SqlParameter("@IsActive", 1);
                 myCommand.Parameters.Add(isActive);
 
-                var nrGet = myCommand.ExecuteNonQuery();
+                SqlParameter id = new SqlParameter("@ID", 0);
+                id.Direction = ParameterDirection.Output;
+                myCommand.Parameters.Add(id);
 
-                if (nrGet > 0)
+                myCommand.ExecuteScalar();
+
+                if (id.Value.ToString() != null)
                 {
                     alert = "Success";
                 }
