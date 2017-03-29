@@ -36,7 +36,7 @@
             <br />
             <button type="button" class="btn btn-link">
             </button>
-            <p class="text-right">
+            <p class="text-right" id="isIn" runat="server">
                 <a href="account.aspx">Logga in / skapa konto</a>
             </p>
             <p class="text-right">

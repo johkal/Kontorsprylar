@@ -49,6 +49,15 @@ namespace Kontorsprylar {
         protected global::System.Web.UI.WebControls.Button ButtonMySearch;
         
         /// <summary>
+        /// isIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl isIn;
+        
+        /// <summary>
         /// leftMenu control.
         /// </summary>
         /// <remarks>
