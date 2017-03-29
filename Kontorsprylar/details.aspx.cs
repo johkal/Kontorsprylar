@@ -46,7 +46,7 @@ namespace Kontorsprylar
                 productCart.Add(new Cart(myProd, antal));
 
                 //Lägg in en lista i Session:
-                //    //(skapa listan varukorg)
+                //(skapa listan varukorg)
                 Session["Cart"] = productCart;
             }
         }
