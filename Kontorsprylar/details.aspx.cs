@@ -12,12 +12,6 @@ namespace Kontorsprylar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Form["action"] != null && Request.Form["action"].Equals("addProductToCart"))
-            {
-                //TODO add to cart
-                string antal = Request.Form["antal"];
-                Session["antalProds"] = antal;//set
-            }
 
             if (Request["PID"] != null && Request["PID"].Length > 0)
             {
@@ -34,9 +28,17 @@ namespace Kontorsprylar
                 //    ////You should cast it back to the original type for use:
                 //    //var list = (List<int>)Session["varukorg"];
                 //    //// list.AddProduct(productID, productAmount);
-
             }
 
+            if (Request.Form["action"] != null && Request.Form["action"].Equals("addProductToCart"))
+            {
+                //TODO add to cart
+                string antal = Request.Form["antal"];
+                List<Cart> productCart = new List<Cart>();
+                productCart.Add( , antal)
+
+                Session["antalProds"] = antal;//set
+            }
         }
         
     }
