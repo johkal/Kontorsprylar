@@ -10,14 +10,10 @@ namespace Kontorsprylar
 {
     public partial class details : System.Web.UI.Page
     {
+        static List<Cart> productCart = new List<Cart>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            //När sidan laddas första gången och inte har lagt något i varukorgen ännu, skapas en ny
-            if (!IsPostBack && Session["Cart"] == null)
-            {
-                List<Cart> productCart = new List<Cart>();
-            }
-                       
             //Ifall det ligger något i varukorgen
             if (Session["Cart"] != null)
             {
