@@ -448,7 +448,7 @@ namespace SQLKAB
             {
                 if (item.ParentID == "" && item.ID != firstID)
                 {
-                    innerHTML += $"<div class='item'><img class='carousel-image' src='img/Kontorsbel.jpg' alt='{item.Name}'><div class='carousel-caption'><h3>{item.Name}</h3></div></div>";
+                    innerHTML += $"<div class='item'><a href='category.aspx?ID={item.ID}'><img class='carousel-image' src='img/Kontorsbel.jpg' alt='{item.Name}'></a><div class='carousel-caption'><h3>{item.Name}</h3></div></div>";
 
                 }
             }
