@@ -25,7 +25,7 @@ namespace Kontorsprylar
 
             string AddOK = SQL.AddCustomer(fname, lname, mail, passw, phone, address, floor, portcode, city, zip);
 
-            info.Text = "Inne på infosida!";
+            info.Text = AddOK;
         }
     }
 }
