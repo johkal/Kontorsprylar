@@ -89,17 +89,20 @@ namespace SQLKAB
                 SqlParameter isActive = new SqlParameter("@IsActive", 1);
                 myCommand.Parameters.Add(isActive);
 
-                SqlParameter id = new SqlParameter("@ID", 0);
+                SqlParameter id = new SqlParameter("@ID", SqlDbType.Int);
                 id.Direction = ParameterDirection.Output;
+                id.Value = 0;
                 myCommand.Parameters.Add(id);
 
-                myCommand.ExecuteScalar();
+                myCommand.ExecuteNonQuery();
 
-                if (id.Value.ToString() != null)
-                {
+                var a1 = myCommand.Parameters["@ID"];
+                var a2 = a1.Value;
+                var t = a2.GetType().Name;
+                var a3 = (int)a2;
+
+                if (a3 > 0)
                     alert = "Success";
-                }
-
             }
             catch (Exception)
             {
