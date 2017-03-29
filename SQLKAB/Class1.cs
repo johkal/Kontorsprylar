@@ -50,6 +50,116 @@ namespace SQLKAB
             return category;
         }
 
+        public static Product FindProduct(string id)
+        {
+            Product prod = new Product();
+
+            SqlConnection persConnection = new SqlConnection(CON_STR);
+
+            try
+            {
+                persConnection.Open();
+
+                SqlCommand command = new SqlCommand("ReadProduct", persConnection);
+
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add(new SqlParameter("@ID", id));
+
+                SqlDataReader dr = command.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    prod.ID = dr["ID"].ToString();
+                    prod.Name = dr["Name"].ToString();
+                    prod.ItemNumber = dr["ItemNumber"].ToString();
+                    prod.NetPrice = Convert.ToDouble(dr["NetPrice"]);
+                    prod.Picture = "";
+                    prod.ItemInfo = dr["ItemInfo"].ToString();
+                    prod.NrInStock = Convert.ToInt32(dr["NrInStock"]);
+                    prod.VATID = Convert.ToInt32(dr["VATID"]);
+                    prod.IsActive = Convert.ToInt32(dr["IsActive"]);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                persConnection.Close();
+            }
+
+            return prod;
+        }
+
+        public static string AddCustomer(string fname, string lname, string mail, string passw, string phone, string address, string floor, string portcode, string city, string zip)
+        {
+            SqlConnection myConnection = new SqlConnection(CON_STR);
+
+            string alert = "Fail";
+
+            try
+            {
+                myConnection.Open();
+                SqlCommand myCommand = new SqlCommand("CreateCustomer", myConnection);
+                myCommand.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter username = new SqlParameter("@Username", mail);
+                myCommand.Parameters.Add(username);
+
+                SqlParameter firstname = new SqlParameter("@Firstname", fname);
+                myCommand.Parameters.Add(firstname);
+
+                SqlParameter lastname = new SqlParameter("@Lastname", lname);
+                myCommand.Parameters.Add(lastname);
+
+                SqlParameter sWord = new SqlParameter("@Secretword", passw);
+                myCommand.Parameters.Add(sWord);
+
+                SqlParameter isCompany = new SqlParameter("@IsCompany", 1);
+                myCommand.Parameters.Add(isCompany);
+
+                SqlParameter phoneNr = new SqlParameter("@PhoneNr", phone);
+                myCommand.Parameters.Add(phoneNr);
+
+                SqlParameter email = new SqlParameter("@Email", mail);
+                myCommand.Parameters.Add(email);
+
+                SqlParameter isAdmin = new SqlParameter("@IsAdmin", 1); //BLIR DEN GLAD OM DEN ÄR EN ETTA??
+                myCommand.Parameters.Add(isAdmin);
+
+                SqlParameter isActive = new SqlParameter("@IsActive", 1);
+                myCommand.Parameters.Add(isActive);
+
+                SqlParameter id = new SqlParameter("@ID", SqlDbType.Int);
+                id.Direction = ParameterDirection.Output;
+                id.Value = 0;
+                myCommand.Parameters.Add(id);
+
+                myCommand.ExecuteNonQuery();
+
+                var a1 = myCommand.Parameters["@ID"];
+                var a2 = a1.Value;
+                var t = a2.GetType().Name;
+                var a3 = (int)a2;
+
+                if (a3 > 0)
+                    alert = "Success";
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+
+            return alert;
+        }
+
         public static List<Product> GetAllProducts()
         {
             List<Product> produkter = new List<Product>();
