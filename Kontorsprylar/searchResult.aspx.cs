@@ -20,6 +20,7 @@ namespace Kontorsprylar
             List<SQLKAB.Category> matchingCategories = new List<SQLKAB.Category>();
 
             string input = Request.QueryString["searchString"];
+            searchResultDiv.InnerHtml = "";
 
             foreach (var prod in allProducts)
             {
@@ -29,8 +30,6 @@ namespace Kontorsprylar
                 }
             }
             
-            searchResultDiv.InnerHtml = "";
-
             foreach (var product in matchingProducts)
             {
                 searchResultDiv.InnerHtml += "<h2><a href='details.aspx?PID=" + product.ID + "'>" + product.Name.ToString() + "</a></h2>\n";
