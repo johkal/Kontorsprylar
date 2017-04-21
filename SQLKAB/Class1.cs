@@ -457,6 +457,7 @@ namespace SQLKAB
             return innerHTML;
         }
 
+        //Genererar en produktlista med tre menynivåer
         public static string GenerateLeftMenu(List<Category> categories)
         {
             string leftMenuInnerText = "<ul>";
